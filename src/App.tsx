@@ -7,12 +7,10 @@ import Layout from "./components/layout/Layout.tsx";
 import {Routes, Route} from "react-router-dom";
 
 function App() {
-    // ROUTES.MAINPAGE
 
   return (
     <>
         <Routes>
-
             <Route path="/main" element={<Layout/>}>
                 <Route path="123" element={<h1>sdg</h1>}/>
             </Route>
@@ -26,4 +24,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
