@@ -7,11 +7,10 @@ const Layout = () => {
 
     const location: Location = useLocation();
 
-    console.log(location.pathname);
-
     return (
         <>
-            {location.pathname !== ROUTES.MAINPAGE ? <Header/> : null}
+            {location.pathname !== ROUTES.AUTHORIZATION ||
+                location.pathname !== ROUTES.REGISTRATION ? <Header/> : null}
             <Outlet/>
         </>
     )
