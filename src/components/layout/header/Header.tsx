@@ -1,12 +1,18 @@
 import type {FC} from "react";
 
+import logo from "../../../assets/logo.svg"
+
 import styles from "./header.module.css"
 
 const Header : FC = () => {
 
     return (
         <>
-            <h1 className={styles.test}>test</h1>
+            <header className="hero">
+                <div className="container">
+                    <img src={logo} alt="" className={styles.logo}/>
+                </div>
+            </header>
         </>
     )
 }
