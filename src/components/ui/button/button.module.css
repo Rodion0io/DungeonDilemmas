@@ -39,3 +39,17 @@
     background-color: #361757;
     cursor: not-allowed;
 }
+
+.secondary{
+    border: 2px solid #8A2BE2;
+    color: #FFFFFF;
+}
+
+.secondary:hover{
+    border: 2px solid #58288A;
+}
+
+.secondary:disabled{
+    border: 2px solid #361757;
+    color: #FFFFFFB2;
+}

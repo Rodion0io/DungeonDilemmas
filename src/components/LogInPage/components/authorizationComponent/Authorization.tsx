@@ -1,4 +1,4 @@
-// import styles from "../styles.module.css"
+import styles from "../styles.module.css"
 
 import type {FC} from "react";
 
@@ -6,7 +6,11 @@ const Authorization: FC = () => {
 
     return (
         <>
-            <h1>authorization</h1>
+            <form action="" className={styles.formBlock}>
+                <div className="form-container">
+                    
+                </div>
+            </form>
         </>
     )
 }

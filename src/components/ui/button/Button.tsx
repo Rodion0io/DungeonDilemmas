@@ -3,7 +3,7 @@ import styles from "./button.module.css"
 import * as React from "react";
 
 type ButtonVariant = 'button' | 'link';
-type ButtonType = "default";
+type ButtonType = "default" | "secondary";
 type ButtonSize = "normal"| "small" | "smallest";
 
 

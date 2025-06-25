@@ -1,5 +1,3 @@
-import './styles/App.css'
-
 import { ROUTES } from "./utils/routes.ts"
 
 import Layout from "./components/layout/Layout.tsx";

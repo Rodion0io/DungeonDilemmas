@@ -2,3 +2,8 @@ body{
     min-height: 100vh;
     background: linear-gradient(#460A75, #11062B);
 }
+
+.container{
+    max-width: 90%;
+    margin: auto;
+}

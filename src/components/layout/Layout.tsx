@@ -11,7 +11,9 @@ const Layout = () => {
         <>
             {location.pathname !== ROUTES.AUTHORIZATION ||
                 location.pathname !== ROUTES.REGISTRATION ? <Header/> : null}
-            <Outlet/>
+            <div className="container">
+                <Outlet/>
+            </div>
         </>
     )
 }
