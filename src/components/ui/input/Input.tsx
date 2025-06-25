@@ -30,11 +30,14 @@ const Input = (
 
     return(
         <>
-            <div className="input-container">
+            <div className={styles.inputContainer}>
                 <input className={styles.input} type={!visibility ? type : "text"} disabled={disabled} placeholder={text} {...props}/>
                 {type !== "password" ?
-                    <button type="button">✕</button>
+                    <button
+                        className={`${styles.inputButton} ${styles.inputCrossButton}`}
+                        type="button">✕</button>
                     : <button
+                            className={styles.inputButton}
                             type="button"
                             onClick={() => setVisibility((prevState) => prevState ? false : true)}>
                         <img src={!visibility ? visibilityIcon : invisibilityIcon} alt="" />

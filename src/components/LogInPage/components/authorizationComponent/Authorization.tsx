@@ -8,7 +8,9 @@ const Authorization: FC = () => {
     return (
         <>
             <form action="" className={styles.formBlock}>
-                <div className="form-container">
+                <div className={styles.formContainer}>
+                    <Input text="Email" type="email"/>
+                    <Input text="Email" type="email"/>
                     <Input text="Email" type="email"/>
                 </div>
             </form>
