@@ -7,7 +7,7 @@ import Button from "../../../ui/button/Button.tsx";
 const Registration: FC = () => {
     return(
         <>
-            <Button/>
+            <Button text="bimbimbambam" buttonType="default"/>
         </>
     )
 }

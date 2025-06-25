@@ -3,27 +3,35 @@ import styles from "./button.module.css"
 import * as React from "react";
 
 type ButtonVariant = 'button' | 'link';
-type ButtonType = 'primary' | 'secondary' | 'danger' | 'danger-outline';
-type ButtonSize = 'default' | 'small' | 'very-small';
+type ButtonType = "default";
+type ButtonSize = "normal"| "small" | "smallest";
+
 
 interface ButtonProps extends React.ComponentProps<'button'>{
-    variant: ButtonVariant,
+    variant?: ButtonVariant,
     text: string,
     buttonType: ButtonType,
-    buttonSize: ButtonSize
+    buttonSize?: ButtonSize,
+    disabled?: boolean
 }
 
 const Button = ({
                     variant = 'button',
                     text,
                     buttonType,
-                    buttonSize = 'default',
+                    buttonSize = "normal",
+                    disabled = false,
                     ...props}: ButtonProps) => {
     return (
 
         <>
             {variant === 'button' ?
-                <button className={`${styles.button}`} type="button" {...props}>{text}</button>
+                <button
+                    className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]}`}
+                    type="button"
+                    disabled={disabled}
+                    {...props}>{text}
+                </button>
                 : null
             }
         </>

@@ -5,6 +5,7 @@ import { ROUTES } from "./utils/routes.ts"
 import Layout from "./components/layout/Layout.tsx";
 
 import {Routes, Route} from "react-router-dom";
+import LogInPage from "./components/LogInPage/LogInPage.tsx";
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
                 <Route path="123" element={<h1>sdg</h1>}/>
             </Route>
 
-            <Route path={ROUTES.AUTHORIZATION} element={<h1>hhh</h1>}>
-                <Route path={ROUTES.REGISTRATION} element={<h1>1111</h1>}/>
+            <Route path={ROUTES.AUTHORIZATION} element={<LogInPage/>}>
+                <Route path={ROUTES.REGISTRATION} element={<LogInPage/>}/>
             </Route>
         </Routes>
 
