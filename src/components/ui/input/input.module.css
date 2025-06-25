@@ -22,10 +22,26 @@
     width: 80%;
 }
 
+.inputBlock{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inputError{
+    border: 2px solid #C10C15;
+}
+
+.errorMessage{
+    color: #C10C15;
+    margin-right: 10px;
+}
 
 .inputButton{
     position: absolute;
-    top: 50%;
+    top: 35%;
     right: 1rem;
     transform: translateY(-50%);
     /*left: 82%;*/
@@ -55,6 +71,6 @@
     margin-right: 2px;
 }
 
-.inputError{
-    border: 2px solid #C10C15;
+@media screen {
+    
 }

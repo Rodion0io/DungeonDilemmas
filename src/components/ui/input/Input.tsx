@@ -3,7 +3,7 @@ import styles from "./input.module.css"
 import visibilityIcon from "../../../assets/visibility.svg"
 import invisibilityIcon from "../../../assets/invisibility.svg"
 
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 
 type TypeInput = "text" | "password" | "email";
@@ -15,6 +15,7 @@ interface InputProps extends React.ComponentProps<'input'>{
     disabled?: boolean;
     type?: TypeInput;
     visibilityText?: visibilityText;
+    errorText?: string;
 }
 
 const Input = (
@@ -23,27 +24,25 @@ const Input = (
         disabled = false,
         type = "text",
         visibilityText = "visible",
+        errorText = undefined,
         ...props
     } : InputProps) => {
 
     const [visibility, setVisibility] = useState<boolean>(false);
-    const [errorFlag, setErrorFlag] = useState<boolean>(false);
-
-    //заглушка
-    useEffect(() => {
-        setErrorFlag((prev: boolean) => prev ? false : true);
-    },[]);
-
 
     return(
         <>
             <div className={styles.inputContainer}>
-                <input
-                    className={`${styles.input} ${errorFlag ? styles.inputError : null}`}
-                    type={!visibility ? type : "text"}
-                    disabled={disabled}
-                    placeholder={text}
-                    {...props}/>
+                <div className={styles.inputBlock}>
+                    <input
+                        className={`${styles.input} 
+                        ${errorText ? styles.inputError : null}`}
+                        type={!visibility ? type : "text"}
+                        disabled={disabled}
+                        placeholder={text}
+                        {...props}/>
+                    <p className={styles.errorMessage}>{errorText}</p>
+                </div>
                 {type !== "password" ?
                     <button
                         className={`${styles.inputButton} ${styles.inputCrossButton}`}
