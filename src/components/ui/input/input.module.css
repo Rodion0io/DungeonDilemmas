@@ -5,6 +5,16 @@
     border: 2px solid #B04CEC;
     background: transparent;
     color: #fff;
+    padding-left: 10px;
+}
+
+.input:focus{
+    border: 2px solid #8A2BE2;
+}
+
+.input:disabled{
+    border: 2px solid #58288A;
+    color: #777777;
 }
 
 .inputContainer{
@@ -36,14 +46,15 @@
 }
 
 .input:placeholder-shown{
-    color: #777777;
+    color: #FFFFFFCC;
+
 }
 
-.input:focus{
-    border: 2px solid #8A2BE2;
+.visibilityPassword{
+    cursor: pointer;
+    margin-right: 2px;
 }
 
-.input:disabled{
-    border: 2px solid #58288A;
-    color: #FFFFFF80;
+.inputError{
+    border: 2px solid #C10C15;
 }

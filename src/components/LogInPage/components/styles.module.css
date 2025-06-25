@@ -1,7 +1,7 @@
 .formBlock{
     background-color: #3C1D5D;
     width: 25vw;
-    height: 60vh;
+    border-radius: 10px;
 }
 
 .formContainer{
@@ -9,5 +9,26 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
+    padding: 50px 0;
+}
+
+.logos{
+    width: 100px;
+    height: 100px;
+}
+
+.formHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.formTitle{
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
 }

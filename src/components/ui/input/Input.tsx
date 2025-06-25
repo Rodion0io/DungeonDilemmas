@@ -1,9 +1,9 @@
 import styles from "./input.module.css"
 
-import visibilityIcon from "../../../assets/password_visibility_icon.svg"
-import invisibilityIcon from "../../../assets/password_invisibility_icon.svg"
+import visibilityIcon from "../../../assets/visibility.svg"
+import invisibilityIcon from "../../../assets/invisibility.svg"
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 type TypeInput = "text" | "password" | "email";
@@ -27,21 +27,35 @@ const Input = (
     } : InputProps) => {
 
     const [visibility, setVisibility] = useState<boolean>(false);
+    const [errorFlag, setErrorFlag] = useState<boolean>(false);
+
+    //заглушка
+    useEffect(() => {
+        setErrorFlag((prev: boolean) => prev ? false : true);
+    },[]);
+
 
     return(
         <>
             <div className={styles.inputContainer}>
-                <input className={styles.input} type={!visibility ? type : "text"} disabled={disabled} placeholder={text} {...props}/>
+                <input
+                    className={`${styles.input} ${errorFlag ? styles.inputError : null}`}
+                    type={!visibility ? type : "text"}
+                    disabled={disabled}
+                    placeholder={text}
+                    {...props}/>
                 {type !== "password" ?
                     <button
                         className={`${styles.inputButton} ${styles.inputCrossButton}`}
-                        type="button">✕</button>
-                    : <button
-                            className={styles.inputButton}
-                            type="button"
-                            onClick={() => setVisibility((prevState) => prevState ? false : true)}>
-                        <img src={!visibility ? visibilityIcon : invisibilityIcon} alt="" />
+                        type="button">
+                        ✕
                     </button>
+                    :
+                    <img
+                        onClick={() => setVisibility((prevState) => prevState ? false : true)}
+                        src={!visibility ? visibilityIcon : invisibilityIcon}
+                        alt=""
+                        className={`${styles.inputButton} ${styles.visibilityPassword}`}/>
                 }
             </div>
         </>
