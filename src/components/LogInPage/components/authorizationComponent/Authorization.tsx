@@ -14,9 +14,14 @@ const Authorization: FC = () => {
 
     const [userLogin, setUserLogin] = useState<UserLoginModel>({email: "", password: ""});
 
-    const handleAuth = () => {
-
+    const handleChange = (value: string, input: keyof UserLoginModel) => {
+        setUserLogin((prevState) => ({
+            ...prevState,
+            [input]: value
+        }));
     }
+
+
 
     return (
         <>
@@ -29,10 +34,14 @@ const Authorization: FC = () => {
                     <Input
                         text="Email"
                         type="email"
+                        name="email"
+                        inputChange={(value) => handleChange(value, "email")}
                     />
                     <Input
                         text="Пароль"
                         type="password"
+                        name="password"
+                        inputChange={(value) => handleChange(value, "password")}
                     />
                     <div className={styles.buttonContainer}>
                         <Button

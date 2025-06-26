@@ -17,6 +17,7 @@ interface InputProps extends React.ComponentProps<'input'>{
     type?: TypeInput;
     visibilityText?: visibilityText;
     errorText?: string;
+    inputChange?:(value: string) => void;
 }
 
 const Input = (
@@ -26,11 +27,13 @@ const Input = (
         type = "text",
         visibilityText = "visible",
         errorText = undefined,
+        inputChange,
+        name,
         ...props
     } : InputProps) => {
 
     const [visibility, setVisibility] = useState<boolean>(false);
-    const {currentText, handleChange} = useInput("");
+    const {currentText, handleChange} = useInput("", inputChange);
 
     return(
         <>
@@ -41,6 +44,9 @@ const Input = (
                     type={!visibility ? type : "text"}
                     disabled={disabled}
                     placeholder={text}
+                    value={currentText}
+                    name={name}
+                    onChange={handleChange}
                     {...props}
                 />
                 {type !== "password" ?
