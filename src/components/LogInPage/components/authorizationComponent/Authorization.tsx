@@ -6,6 +6,7 @@ import logo from "../../../../assets/logo.svg"
 
 import Input from "../../../ui/input/Input.tsx";
 import Button from "../../../ui/button/Button.tsx";
+import {ROUTES} from "../../../../utils/routes.ts";
 
 const Authorization: FC = () => {
 
@@ -32,11 +33,14 @@ const Authorization: FC = () => {
                             className={styles.actionButton}
                             text="Войти"
                             buttonType="default"
+                            variant="button"
                         />
                         <Button
                             className={styles.actionButton}
                             text="Зарегестрироваться"
                             buttonType="default"
+                            variant="link"
+                            link={ROUTES.REGISTRATION}
                         />
                     </div>
                 </div>

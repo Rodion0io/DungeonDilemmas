@@ -49,21 +49,17 @@
 
 .inputCrossButton{
     border: none;
-    border: 2px solid #D3232D;
     background: transparent;
-    color: #D3232D;
-    border-radius: 12px;
+    color: #fff;
 }
 
 .inputCrossButton:hover{
-    color: #C10C15;
-    border: 2px solid #C10C15;
+    color: grey;
     transition: all 0.2s;
 }
 
 .input:placeholder-shown{
     color: #FFFFFFCC;
-
 }
 
 .visibilityPassword{

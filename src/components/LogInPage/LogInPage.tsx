@@ -16,11 +16,13 @@ const LogInPage = () => {
             {/*<section className="login-page">*/}
             <section className={styles.loginPage}>
                 <div className="container">
-                    {currentLocation === ROUTES.AUTHORIZATION ?
-                        <Authorization/>
-                        :
-                        <Registration/>
-                    }
+                    <div className="section-container">
+                        {currentLocation === ROUTES.AUTHORIZATION ?
+                            <Authorization/>
+                            :
+                            <Registration/>
+                        }
+                    </div>
                 </div>
             </section>
         </>

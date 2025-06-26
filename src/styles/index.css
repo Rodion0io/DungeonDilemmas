@@ -8,6 +8,17 @@ body{
     margin: auto;
 }
 
+.section-container{
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    margin-top: 40px;
+}
+
 *{
     box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
 }

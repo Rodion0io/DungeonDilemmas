@@ -19,7 +19,7 @@ interface ButtonProps extends React.ComponentProps<'button'>{
 
 interface ButtonAsButton extends ButtonProps{
     variant: Extract<ButtonVariant, 'button'>
-    link: never
+    link?: undefined
 }
 
 interface ButtonAsLink extends ButtonProps {
@@ -41,7 +41,10 @@ const Button = ({
     return (
         <>
             {variant === 'link' && link ?
-                <Link to={link}/>
+                <Link
+                    className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]} ${className}`}
+                    to={link}>{text}
+                </Link>
                 :
                 <button
                     className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]} ${className}`}
