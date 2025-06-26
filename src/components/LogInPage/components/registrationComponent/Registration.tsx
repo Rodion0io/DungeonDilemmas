@@ -10,6 +10,7 @@ import {ROUTES} from "../../../../utils/routes.ts";
 
 
 const Registration: FC = () => {
+
     return(
         <>
             <form action="" className={styles.formBlock}>
@@ -21,19 +22,22 @@ const Registration: FC = () => {
                     <Input
                         text="Email"
                         type="email"
-
+                        name="email"
                     />
                     <Input
                         text="Имя"
                         type="text"
+                        name="name"
                     />
                     <Input
                         text="Пароль"
                         type="password"
+                        name="password"
                     />
                     <Input
                         text="Повторите пароль"
                         type="password"
+                        name="repeatPassword"
                     />
                     <div className={styles.buttonContainer}>
                         <Button

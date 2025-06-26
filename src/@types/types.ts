@@ -3,6 +3,10 @@ export interface UserLoginModel{
     password: string;
 }
 
+export interface UserRegisterModel extends UserLoginModel{
+    userName: string;
+}
+
 export interface TokenResponseModel{
     accessToken: string;
     refreshToken: string;
