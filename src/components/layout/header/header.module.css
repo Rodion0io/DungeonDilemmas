@@ -1,4 +1,41 @@
+.hero{
+    background-color: #58288A;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.navbarContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .logo{
     width: 100px;
     height: 100px;
+}
+
+.navbar{
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list{
+    width: 15%;
+    display: flex;
+
+}
+
+.navLink{
+    color: #fff;
+}
+
+.navLink:hover{
+    color: #FDB94B;
+    transition: all 0.2s;
+}
+
+.active{
+    color: #FDB94B;
 }
