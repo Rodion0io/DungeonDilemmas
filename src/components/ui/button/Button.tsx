@@ -1,11 +1,12 @@
 import styles from "./button.module.css"
 
 import * as React from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
-type ButtonVariant = 'button' | 'link';
+type ButtonVariant = 'button' | 'link' | 'navLink';
 type ButtonType = "default" | "secondary";
 type ButtonSize = "normal"| "small" | "smallest";
+type ButtonAsLinkTypes = "link" | "navLink"
 
 
 interface ButtonProps extends React.ComponentProps<'button'>{
@@ -23,7 +24,7 @@ interface ButtonAsButton extends ButtonProps{
 }
 
 interface ButtonAsLink extends ButtonProps {
-    variant: Extract<ButtonVariant, 'link'>
+    variant: Extract<ButtonVariant, ButtonAsLinkTypes>
     link: string
 }
 
@@ -46,6 +47,14 @@ const Button = ({
                     to={link}>{text}
                 </Link>
                 :
+                variant === 'navLink' && link ?
+
+                    <NavLink
+                        className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]} ${className}`}
+                        to={link}>
+                        {text}
+                    </NavLink>:
+
                 <button
                     className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]} ${className}`}
                     type="button"

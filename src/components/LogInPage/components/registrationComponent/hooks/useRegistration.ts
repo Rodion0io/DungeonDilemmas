@@ -1,5 +1,5 @@
 import {useState} from "react";
-import type {UserRegisterFormModel, UserRegisterModel} from "../../../../../@types/types.ts";
+import type {TokenResponseModel, UserRegisterFormModel, UserRegisterModel} from "../../../../../@types/types.ts";
 import {type NavigateFunction, useNavigate} from "react-router-dom";
 import {ACCESS, EMAIL_PATTERN, REFRESH} from "../../../../../utils/constants.ts";
 import {ROUTES} from "../../../../../utils/routes.ts";
@@ -44,7 +44,7 @@ export const useRegistration = () => {
                     password: userRegist.password
                 };
 
-                const result = await registrationRequest(model);
+                const result: TokenResponseModel = await registrationRequest(model);
 
                 localStorage.setItem(ACCESS, result.accessToken);
                 localStorage.setItem(REFRESH, result.refreshToken);
