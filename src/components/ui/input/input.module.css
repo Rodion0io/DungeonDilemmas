@@ -18,17 +18,11 @@
 }
 
 .inputContainer{
-    position: relative;
+    display: flex;
+    align-items: center;
     width: 80%;
 }
 
-.inputBlock{
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    flex-direction: column;
-    gap: 4px;
-}
 
 .inputError{
     border: 2px solid #C10C15;
@@ -39,13 +33,6 @@
     margin-right: 10px;
 }
 
-.inputButton{
-    position: absolute;
-    top: 35%;
-    right: 1rem;
-    transform: translateY(-50%);
-    /*left: 82%;*/
-}
 
 .inputCrossButton{
     border: none;
@@ -64,9 +51,8 @@
 
 .visibilityPassword{
     cursor: pointer;
-    margin-right: 2px;
 }
 
 @media screen {
-    
+
 }

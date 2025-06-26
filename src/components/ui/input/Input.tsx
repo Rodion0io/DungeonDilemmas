@@ -4,6 +4,7 @@ import visibilityIcon from "../../../assets/visibility.svg"
 import invisibilityIcon from "../../../assets/invisibility.svg"
 
 import {useState} from "react";
+import {useInput} from "./hooks/useInput.ts";
 
 
 type TypeInput = "text" | "password" | "email";
@@ -29,20 +30,19 @@ const Input = (
     } : InputProps) => {
 
     const [visibility, setVisibility] = useState<boolean>(false);
+    const {currentText, handleChange} = useInput("");
 
     return(
         <>
             <div className={styles.inputContainer}>
-                <div className={styles.inputBlock}>
-                    <input
-                        className={`${styles.input} 
-                        ${errorText ? styles.inputError : null}`}
-                        type={!visibility ? type : "text"}
-                        disabled={disabled}
-                        placeholder={text}
-                        {...props}/>
-                    <p className={styles.errorMessage}>{errorText}</p>
-                </div>
+                <input
+                    className={`${styles.input} 
+                    ${errorText ? styles.inputError : null}`}
+                    type={!visibility ? type : "text"}
+                    disabled={disabled}
+                    placeholder={text}
+                    {...props}
+                />
                 {type !== "password" ?
                     <button
                         className={`${styles.inputButton} ${styles.inputCrossButton}`}
@@ -56,6 +56,7 @@ const Input = (
                         alt=""
                         className={`${styles.inputButton} ${styles.visibilityPassword}`}/>
                 }
+                <p className={styles.errorMessage}>{errorText}</p>
             </div>
         </>
     )

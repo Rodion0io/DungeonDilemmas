@@ -1,16 +1,22 @@
 import styles from "../styles.module.css"
 
-import type {FC} from "react";
+import {type FC, useState} from "react";
 
 import logo from "../../../../assets/logo.svg"
 
 import Input from "../../../ui/input/Input.tsx";
 import Button from "../../../ui/button/Button.tsx";
+
 import {ROUTES} from "../../../../utils/routes.ts";
+import type {UserLoginModel} from "../../../../@types/types.ts";
 
 const Authorization: FC = () => {
 
+    const [userLogin, setUserLogin] = useState<UserLoginModel>({email: "", password: ""});
 
+    const handleAuth = () => {
+
+    }
 
     return (
         <>
@@ -25,7 +31,7 @@ const Authorization: FC = () => {
                         type="email"
                     />
                     <Input
-                        text="Password"
+                        text="Пароль"
                         type="password"
                     />
                     <div className={styles.buttonContainer}>
@@ -34,6 +40,7 @@ const Authorization: FC = () => {
                             text="Войти"
                             buttonType="default"
                             variant="button"
+                            disabled={true}
                         />
                         <Button
                             className={styles.actionButton}
