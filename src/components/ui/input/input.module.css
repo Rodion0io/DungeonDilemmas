@@ -18,11 +18,13 @@
 }
 
 .inputContainer{
-    display: flex;
-    align-items: center;
     width: 80%;
 }
 
+.inputBLock{
+    display: flex;
+    margin-bottom: 5px;
+}
 
 .inputError{
     border: 2px solid #C10C15;

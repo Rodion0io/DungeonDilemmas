@@ -38,30 +38,32 @@ const Input = (
     return(
         <>
             <div className={styles.inputContainer}>
-                <input
-                    className={`${styles.input} 
-                    ${errorText ? styles.inputError : null}`}
-                    type={!visibility ? type : "text"}
-                    disabled={disabled}
-                    placeholder={text}
-                    value={currentText}
-                    name={name}
-                    onChange={handleChange}
-                    {...props}
-                />
-                {type !== "password" ?
-                    <button
-                        className={`${styles.inputButton} ${styles.inputCrossButton}`}
-                        type="button">
-                        ✕
-                    </button>
-                    :
-                    <img
-                        onClick={() => setVisibility((prevState) => prevState ? false : true)}
-                        src={!visibility ? visibilityIcon : invisibilityIcon}
-                        alt=""
-                        className={`${styles.inputButton} ${styles.visibilityPassword}`}/>
-                }
+                <div className={styles.inputBLock}>
+                    <input
+                        className={`${styles.input} 
+                        ${errorText ? styles.inputError : null}`}
+                        type={!visibility ? type : "text"}
+                        disabled={disabled}
+                        placeholder={text}
+                        value={currentText}
+                        name={name}
+                        onChange={handleChange}
+                        {...props}
+                    />
+                    {type !== "password" ?
+                        <button
+                            className={`${styles.inputButton} ${styles.inputCrossButton}`}
+                            type="button">
+                            ✕
+                        </button>
+                        :
+                        <img
+                            onClick={() => setVisibility((prevState) => prevState ? false : true)}
+                            src={!visibility ? visibilityIcon : invisibilityIcon}
+                            alt=""
+                            className={`${styles.inputButton} ${styles.visibilityPassword}`}/>
+                    }
+                </div>
                 <p className={styles.errorMessage}>{errorText}</p>
             </div>
         </>
