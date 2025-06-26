@@ -7,6 +7,10 @@ export interface UserRegisterModel extends UserLoginModel{
     userName: string;
 }
 
+export interface UserRegisterFormModel extends UserRegisterModel{
+    passwordRepeat: string;
+}
+
 export interface TokenResponseModel{
     accessToken: string;
     refreshToken: string;

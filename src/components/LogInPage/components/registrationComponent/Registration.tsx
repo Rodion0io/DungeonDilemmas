@@ -7,9 +7,13 @@ import Button from "../../../ui/button/Button.tsx";
 import Input from "../../../ui/input/Input.tsx";
 
 import {ROUTES} from "../../../../utils/routes.ts";
+import {useRegistration} from "./hooks/useRegistration.ts";
+import {ERROR_MESSAGES} from "../../../../utils/errorMessages.ts";
 
 
 const Registration: FC = () => {
+
+    const { errorCode, handleChange, handleRegistration, checkValues } = useRegistration();
 
     return(
         <>
@@ -23,21 +27,26 @@ const Registration: FC = () => {
                         text="Email"
                         type="email"
                         name="email"
+                        errorText={errorCode > 0 ? ERROR_MESSAGES[errorCode] : undefined}
+                        inputChange={(value) => handleChange(value, "email")}
                     />
                     <Input
                         text="Имя"
                         type="text"
                         name="name"
+                        inputChange={(value) => handleChange(value, "userName")}
                     />
                     <Input
                         text="Пароль"
                         type="password"
                         name="password"
+                        inputChange={(value) => handleChange(value, "password")}
                     />
                     <Input
                         text="Повторите пароль"
                         type="password"
                         name="repeatPassword"
+                        inputChange={(value) => handleChange(value, "passwordRepeat")}
                     />
                     <div className={styles.buttonContainer}>
                         <Button
@@ -45,7 +54,8 @@ const Registration: FC = () => {
                             text="Зарегестрироваться"
                             buttonType="default"
                             variant="button"
-                            disabled={true}
+                            disabled={checkValues()}
+                            onClick={handleRegistration}
                         />
                         <Button
                             className={styles.actionButton}
