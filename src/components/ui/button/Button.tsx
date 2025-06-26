@@ -8,15 +8,8 @@ type ButtonType = "default" | "secondary";
 type ButtonSize = "normal"| "small" | "smallest";
 
 
-type ButtonAsButton = ButtonProps & {
-    variant?: 'button';
-    href?: never;
-};
-
-
-
 interface ButtonProps extends React.ComponentProps<'button'>{
-    variant?: ButtonVariant,
+    // variant?: ButtonVariant,
     text: string,
     buttonType: ButtonType,
     buttonSize?: ButtonSize,
@@ -24,25 +17,38 @@ interface ButtonProps extends React.ComponentProps<'button'>{
     className?: string
 }
 
+interface ButtonAsButton extends ButtonProps{
+    variant: Extract<ButtonVariant, 'button'>
+    link: never
+}
+
+interface ButtonAsLink extends ButtonProps {
+    variant: Extract<ButtonVariant, 'link'>
+    link: string
+}
+
+type ButtonProp = ButtonAsButton | ButtonAsLink
+
 const Button = ({
-                    variant = 'button',
+                    variant,
                     text,
                     buttonType,
                     buttonSize = "normal",
                     disabled = false,
                     className = undefined,
-                    ...props}: ButtonProps) => {
+                    link,
+                    ...props}: ButtonProp) => {
     return (
         <>
-            {variant === 'button' ?
+            {variant === 'link' && link ?
+                <Link to={link}/>
+                :
                 <button
                     className={`${styles.button} ${styles[buttonType]} ${styles[buttonSize]} ${className}`}
                     type="button"
                     disabled={disabled}
                     {...props}>{text}
                 </button>
-                : 
-                <Link to={}
             }
         </>
 
