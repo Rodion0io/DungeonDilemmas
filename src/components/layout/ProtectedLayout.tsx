@@ -11,25 +11,30 @@ const ProtectedLayout = ({ children }: {children : React.ReactNode}) => {
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
 
-    if (token && refreshToken){
-        console.log(decoderToken(refreshToken, "exp") < Date.now() && decoderToken(token, "exp") < Date.now());
-    }
+
 
     useEffect(() => {
-        if (
-            (
-                (token && refreshToken && decoderToken(refreshToken, "exp") < Date.now() && decoderToken(token, "exp") < Date.now()) ||
-                (!token && !refreshToken) ||
-                (!token && refreshToken && decoderToken(refreshToken, "exp") < Date.now()) ||
-                (token && !refreshToken && decoderToken(token, "exp") < Date.now())
-            )
-            && (location.pathname !== ROUTES.AUTHORIZATION && location.pathname !== ROUTES.REGISTRATION)
-        ) {
+        if (((token
+                && refreshToken
+                && decoderToken(refreshToken, "exp") < Date.now() / 1000
+                && decoderToken(token, "exp") < Date.now() / 1000)||
 
+            (!token && !refreshToken)||
+
+            (!token && refreshToken && decoderToken(refreshToken, "exp") < Date.now() / 1000)||
+
+            (token && !refreshToken && decoderToken(token, "exp") < Date.now() / 1000)) &&
+            (location.pathname !== ROUTES.AUTHORIZATION && location.pathname !== ROUTES.REGISTRATION)) {
             navigate(ROUTES.AUTHORIZATION);
         }
-    }, [navigate, location.pathname, token, refreshToken]);
-
+        else if (((token && refreshToken
+            && decoderToken(refreshToken, "exp") > Date.now() / 1000
+            && decoderToken(token, "exp") > Date.now() / 1000)||
+            (token && !refreshToken && decoderToken(token, "exp") > Date.now() / 1000)) &&
+            (location.pathname === ROUTES.AUTHORIZATION || location.pathname === ROUTES.REGISTRATION)){
+            navigate(ROUTES.MAINPAGE);
+        }
+    },[location]);
 
     return (
         <>
