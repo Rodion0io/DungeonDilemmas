@@ -1,6 +1,12 @@
 import type {FC} from "react";
 
 import logo from "../../../assets/logo.svg"
+import home from "../../../assets/home.svg"
+import selectedHome from "../../../assets/homeSelected.svg"
+import profile from "../../../assets/profile.svg"
+import profileSelected from "../../../assets/profileSelected.svg"
+import raiting from "../../../assets/rating.svg"
+import raitingSelected from "../../../assets/raitingSelected.svg"
 
 import styles from "./header.module.css"
 
@@ -19,17 +25,27 @@ const Header : FC = () => {
                             <ul className={styles.list}>
                                 <NavLink
                                     className={({ isActive }) =>
-                                        isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
+                                        isActive ? `${styles.navLink} ${styles.active}` : `${styles.navLink}`
                                     }
                                     to={ROUTES.MAINPAGE}>
-                                    Главная
+                                    {({ isActive }) =>
+                                        <>
+                                            <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
+                                            Главная
+                                        </>
+                                    }
                                 </NavLink>
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.AUTHORIZATION}>
-                                    Рейтинг
+                                    to={ROUTES.RATING}>
+                                    {({ isActive }) =>
+                                        <>
+                                            <img className="navlick-icon" src={`${isActive ? raitingSelected : raiting}`} alt=""/>
+                                            Рейтинг
+                                        </>
+                                    }
                                 </NavLink>
                             </ul>
                             <ul className={styles.list}>
@@ -37,15 +53,25 @@ const Header : FC = () => {
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.AUTHORIZATION}>
-                                    Квизы
+                                    to={ROUTES.QUIZZES}>
+                                    {({ isActive }) =>
+                                        <>
+                                            <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
+                                            Квизы
+                                        </>
+                                    }
                                 </NavLink>
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.REGISTRATION}>
-                                    Профиль
+                                    to={ROUTES.PROFILE}>
+                                    {({ isActive }) =>
+                                        <>
+                                            <img className="navlick-icon" src={`${isActive ? profileSelected : profile}`} alt=""/>
+                                            Профиль
+                                        </>
+                                    }
                                 </NavLink>
                             </ul>
                         </nav>

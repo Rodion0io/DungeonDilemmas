@@ -13,7 +13,10 @@ function App() {
         <ProtectedLayout>
         <Routes>
             <Route path="/main" element={<Layout/>}>
-                <Route path="123" element={<h1>sdg</h1>}/>
+                <Route index element={<h1>MainPage</h1>}/>
+                <Route path={ROUTES.RATING} element={<h1>RatingPage</h1>}/>
+                <Route path={ROUTES.QUIZZES} element={<h1>QuizzesPage</h1>}/>
+                <Route path={ROUTES.PROFILE} element={<h1>ProfilePage</h1>}/>
             </Route>
 
             <Route path={ROUTES.AUTHORIZATION} element={<LogInPage/>}>

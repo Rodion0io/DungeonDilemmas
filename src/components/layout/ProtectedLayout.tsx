@@ -8,7 +8,6 @@ const ProtectedLayout = ({ children }: {children : React.ReactNode}) => {
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
 
-
     useEffect(() => {
         const token: string | null = localStorage.getItem(ACCESS);
         const refreshToken: string | null = localStorage.getItem(REFRESH);

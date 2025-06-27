@@ -22,13 +22,16 @@
 }
 
 .list{
-    width: 15%;
+    width: 25%;
     display: flex;
-
+    justify-content: space-between;
 }
 
 .navLink{
     color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .navLink:hover{
@@ -38,4 +41,5 @@
 
 .active{
     color: #FDB94B;
+
 }
