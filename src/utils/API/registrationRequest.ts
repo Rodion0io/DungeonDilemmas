@@ -1,5 +1,5 @@
 import type {TokenResponseModel, UserRegisterModel} from "../../@types/types.ts";
-import {notAuthorizedRequestAuth} from "./instances.ts";
+import {request} from "./instances.ts";
 import {URL} from "../constants.ts";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ export const registrationRequest = async(
     model: UserRegisterModel
 ): Promise<TokenResponseModel> => {
     try{
-        const response = await notAuthorizedRequestAuth.post(`${URL}auth/register`, model);
+        const response = await request.post(`${URL}auth/register`, model);
 
         return response.data;
     }
