@@ -2,13 +2,18 @@ import {URL} from "../constants.ts";
 
 import axios from "axios";
 import type {TokenResponseModel, UserLoginModel} from "../../@types/types.ts";
-import {notAuthorizedRequestAuth} from "./instances.ts";
+import {request} from "./instances.ts";
 
 export const authorizationRequest = async(
     model: UserLoginModel
 ): Promise<TokenResponseModel> => {
+
+    const header = {
+        "Content-Type": "application/json",
+    };
+
     try{
-        const response = await notAuthorizedRequestAuth.post(`${URL}auth/login`, model);
+        const response = await request.post(`${URL}auth/login`, model, {headers: header});
 
         return response.data;
     }

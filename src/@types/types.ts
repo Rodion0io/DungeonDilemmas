@@ -11,7 +11,30 @@ export interface UserRegisterFormModel extends UserRegisterModel{
     passwordRepeat: string;
 }
 
+interface BestUsersGameModel{
+    name: string;
+    score: number;
+}
+
+export interface UserModel{
+    id: string;
+    email: string;
+    userName: string;
+    totalPoints: number;
+    bestUsersGame: BestUsersGameModel
+}
+
 export interface TokenResponseModel{
     accessToken: string;
     refreshToken: string;
+}
+
+export interface RefreshTokenRequestModel{
+    refreshToken: string;
+}
+
+export interface TokenClaims{
+    sub: string;
+    exp: number;
+    userId: string;
 }
