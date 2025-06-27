@@ -5,15 +5,13 @@ import {ROUTES} from "../../utils/routes.ts";
 import {useEffect} from "react";
 
 const ProtectedLayout = ({ children }: {children : React.ReactNode}) => {
-
-    const token: string | null = localStorage.getItem(ACCESS);
-    const refreshToken: string | null = localStorage.getItem(REFRESH);
     const navigate: NavigateFunction = useNavigate();
     const location = useLocation();
 
 
-
     useEffect(() => {
+        const token: string | null = localStorage.getItem(ACCESS);
+        const refreshToken: string | null = localStorage.getItem(REFRESH);
         if (((token
                 && refreshToken
                 && decoderToken(refreshToken, "exp") < Date.now() / 1000
