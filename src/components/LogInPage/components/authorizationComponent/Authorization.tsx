@@ -48,7 +48,7 @@ const Authorization: FC = () => {
                         />
                         <Button
                             className={styles.actionButton}
-                            text="Зарегестрироваться"
+                            text="Зарегистрироваться"
                             buttonType="default"
                             variant="link"
                             link={ROUTES.REGISTRATION}
