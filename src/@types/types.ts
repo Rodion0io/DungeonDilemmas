@@ -38,3 +38,13 @@ export interface TokenClaims{
     exp: number;
     userId: string;
 }
+
+export interface UserEditModel{
+    newUserName: string;
+    newEmail: string;
+}
+
+export interface UserEditPasswordModel{
+    oldPassword: string;
+    newPassword: string;
+}
