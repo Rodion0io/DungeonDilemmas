@@ -81,6 +81,7 @@ const Profile = ({ props }: Props) => {
                                 onClick={handleClickLogout}
                             />
                         </div>
+
                     </div>
                 </div>
             </article>

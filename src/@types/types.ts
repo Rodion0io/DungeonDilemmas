@@ -48,3 +48,9 @@ export interface UserEditPasswordModel{
     oldPassword: string;
     newPassword: string;
 }
+
+export interface ModalWindowProps {
+    modalActive: boolean;
+    setModalActive: (modalActive: boolean) => void;
+    children: React.ReactNode;
+}
