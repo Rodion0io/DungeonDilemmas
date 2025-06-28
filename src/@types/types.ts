@@ -24,6 +24,8 @@ export interface UserModel{
     bestUsersGame: BestUsersGameModel
 }
 
+export type UserOtherModel = Omit<UserModel, "email">;
+
 export interface TokenResponseModel{
     accessToken: string;
     refreshToken: string;
