@@ -2,11 +2,13 @@ import Profile from "./components/profile/Profile.tsx";
 
 const ProfilePage = () => {
 
+
+
     return (
         <>
             <section className="profile">
                 <div className="section-container">
-                    <Profile/>
+                    {/*<Profile/>*/}
                 </div>
             </section>
         </>
