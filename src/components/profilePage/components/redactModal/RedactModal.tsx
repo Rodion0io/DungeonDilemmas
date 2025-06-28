@@ -21,7 +21,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
         <>
             <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
                 <div className={styles.modalContainer}>
-                    <div className="header-part">
+                    <div className={styles.headerPart}>
                         <h2 className="title">Редактирование аккаунта</h2>
                         <div className={styles.bar}>
                             <p
@@ -41,7 +41,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                     </div>
                     {!isPassword ?
                         <>
-                            <div className="form-block">
+                            <div className={styles.formBlock}>
                                 <span className="label">Имя пользователя</span>
                                 <Input
                                     text="Имя пользоватея"
@@ -50,7 +50,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
-                            <div className="form-block">
+                            <div className={styles.formBlock}>
                                 <span className="label">Email</span>
                                 <Input
                                     text="Email"
@@ -59,12 +59,12 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
-                            <div className="update-block">
+                            <div className={styles.updateBlock}>
                                 <Button variant="button" text="Обновить" buttonType="default"/>
                             </div>
                         </>:
                         <>
-                            <div className="form-block">
+                            <div className={styles.formBlock}>
                                 <span className="label">Старый пароль</span>
                                 <Input
                                     text="Старый пароль"
@@ -73,7 +73,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
-                            <div className="form-block">
+                            <div className={styles.formBlock}>
                                 <span className="label">Новый пароль</span>
                                 <Input
                                     text="Новый пароль"
@@ -82,7 +82,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
-                            <div className="update-block">
+                            <div className={styles.updateBlock}>
                                 <Button variant="button" text="Обновить" buttonType="default"/>
                             </div>
                         </>
