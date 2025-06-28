@@ -7,12 +7,33 @@ import mail from "../../../../assets/Email.svg"
 
 import Button from "../../../ui/button/Button.tsx";
 import type {UserModel} from "../../../../@types/types.ts";
+import {ACCESS, REFRESH} from "../../../../utils/constants.ts";
+import {logoutRequest} from "../../../../utils/API/logoutRequest.ts";
+import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../../../utils/routes.ts";
 
 interface Props {
     props: UserModel
 }
 
 const Profile = ({ props }: Props) => {
+
+    const navigate = useNavigate();
+
+    const handleClickLogout = async (): Promise<void> => {
+        const token: string | null = localStorage.getItem(ACCESS);
+        if (token){
+            try{
+                await logoutRequest(token);
+                localStorage.removeItem(ACCESS);
+                localStorage.removeItem(REFRESH);
+                navigate(ROUTES.AUTHORIZATION);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+    }
 
     return (
         <>
@@ -48,8 +69,17 @@ const Profile = ({ props }: Props) => {
                             </div>
                         </div>
                         <div className={styles.actionsBlock}>
-                            <Button variant="button" text="Редактировать" buttonType="default"/>
-                            <Button variant="button" text="Выйти" buttonType="default"/>
+                            <Button
+                                variant="button"
+                                text="Редактировать"
+                                buttonType="default"
+                            />
+                            <Button
+                                variant="button"
+                                text="Выйти"
+                                buttonType="default"
+                                onClick={handleClickLogout}
+                            />
                         </div>
                     </div>
                 </div>

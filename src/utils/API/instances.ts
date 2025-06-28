@@ -1,10 +1,8 @@
 import axios from "axios";
-
 import {ACCESS, BEARER, REFRESH, URL} from "../constants.ts";
-import {ROUTES} from "../routes.ts";
-
+import {useNavigate} from "react-router-dom";
 import {refreshRequest} from "./refreshRequest.ts";
-
+import {ROUTES} from "../routes.ts";
 import type {TokenResponseModel} from "../../@types/types.ts";
 
 export const request = axios.create({
@@ -22,6 +20,7 @@ request.interceptors.response.use((response) => {
             try{
                 if (refreshToken){
                     const response: TokenResponseModel = await refreshRequest({refreshToken: refreshToken});
+
                     localStorage.removeItem(ACCESS);
                     localStorage.removeItem(REFRESH);
 

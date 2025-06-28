@@ -12,7 +12,6 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchFunction = async() => {
             const token: string | null = localStorage.getItem(ACCESS);
-
             if (token){
                 try{
                     const response: UserModel = await getMyProfileRequest(token);
@@ -24,7 +23,7 @@ const ProfilePage = () => {
             }
         }
         fetchFunction();
-    }, [])
+    }, []);
 
     return (
         <>
