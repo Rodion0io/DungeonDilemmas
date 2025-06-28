@@ -2,7 +2,11 @@ const RatingPage = () => {
 
     return (
         <>
-            <h1>ratingPage</h1>
+            <section className="rating">
+                <div className="section-container">
+                    
+                </div>
+            </section>
         </>
     )
 }
