@@ -18,7 +18,7 @@ const Registration: FC = () => {
     return(
         <>
             <form action="" className={styles.formBlock}>
-                <div className={styles.formContainer}>
+                <div className="form-container">
                     <header className={styles.formHeader}>
                         <img className={styles.logos} src={logo}/>
                         <h2 className={styles.formTitle}>Регистрация</h2>

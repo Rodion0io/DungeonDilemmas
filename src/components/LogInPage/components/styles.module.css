@@ -5,15 +5,6 @@
     border-radius: 10px;
 }
 
-.formContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    padding: 50px 0;
-}
-
 .logos{
     width: 25%;
     height: 25%;

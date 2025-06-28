@@ -1,5 +1,7 @@
 import type {FC} from "react";
 
+import {NavLink} from "react-router-dom";
+
 import logo from "../../../assets/logo.svg"
 import home from "../../../assets/home.svg"
 import selectedHome from "../../../assets/homeSelected.svg"
@@ -9,8 +11,6 @@ import raiting from "../../../assets/rating.svg"
 import raitingSelected from "../../../assets/raitingSelected.svg"
 
 import styles from "./header.module.css"
-
-import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../../utils/routes.ts";
 
 const Header : FC = () => {
@@ -27,7 +27,8 @@ const Header : FC = () => {
                                     className={({ isActive }) =>
                                         isActive ? `${styles.navLink} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.MAINPAGE}>
+                                    to={ROUTES.MAINPAGE}
+                                    end>
                                     {({ isActive }) =>
                                         <>
                                             <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
@@ -39,7 +40,8 @@ const Header : FC = () => {
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.RATING}>
+                                    to={ROUTES.RATING}
+                                    end>
                                     {({ isActive }) =>
                                         <>
                                             <img className="navlick-icon" src={`${isActive ? raitingSelected : raiting}`} alt=""/>
@@ -53,7 +55,8 @@ const Header : FC = () => {
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.QUIZZES}>
+                                    to={ROUTES.QUIZZES}
+                                    end>
                                     {({ isActive }) =>
                                         <>
                                             <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
@@ -65,7 +68,8 @@ const Header : FC = () => {
                                     className={({ isActive }) =>
                                         isActive ? `${styles.link} ${styles.active}` : `${styles.navLink}`
                                     }
-                                    to={ROUTES.PROFILE}>
+                                    to={ROUTES.PROFILE}
+                                    end>
                                     {({ isActive }) =>
                                         <>
                                             <img className="navlick-icon" src={`${isActive ? profileSelected : profile}`} alt=""/>
