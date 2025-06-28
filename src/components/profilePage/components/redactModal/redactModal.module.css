@@ -1,0 +1,42 @@
+.bar{
+    background-color: #FFF;
+    display: flex;
+    width:40%;
+    height: 30px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.line{
+    background-color: #000;
+    border: 1px solid grey;
+    width: 1px;
+    height: 100%;
+}
+
+.variant{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    height: 100%;
+    align-items: center;
+}
+
+
+/*Насрал(((*/
+.activeFirstVariant{
+    background-color: grey;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.activeSecondVariant{
+    background-color: grey;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modalContainer{
+
+}

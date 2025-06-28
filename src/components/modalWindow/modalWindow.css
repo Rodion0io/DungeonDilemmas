@@ -19,9 +19,9 @@
     z-index: 2;
 }
 
-.modalContent{
+.modal-content{
     padding: 20px;
-    background-color: #fff;
+    background-color: #58288A;
     border-radius: 12px;
     width: 50%;
     /* height: 200px; */

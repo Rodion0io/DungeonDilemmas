@@ -1,17 +1,18 @@
-import styles from "./modalWindow.module.css"
+import "./modalWindow.css"
 
-import type {ModalWindowProps} from "../../@types/types.ts"
 
-interface Props{
-    props: ModalWindowProps;
+interface ModalWindowProps {
+    modalActive: boolean;
+    setModalActive: (modalActive: boolean) => void;
+    children: React.ReactNode;
 }
 
-const ModalWindow = ({ props }: Props) => {
+const ModalWindow = ({ modalActive, setModalActive, children }: ModalWindowProps) => {
 
     return (
         <>
-            <div className={props.modalActive ? `${styles.modal} ${styles.active}}` : `${styles.modal}`} onClick={() => props.setModalActive(false)}>
-                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>{props.children}</div>
+            <div className={modalActive ? "modal active" : "modal"} onClick={() => setModalActive(false)}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>{children}</div>
             </div>
         </>
     )

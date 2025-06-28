@@ -1,12 +1,94 @@
-// import styles from "/redactModal.module.css"
+import styles from "./redactModal.module.css"
 
+import ModalWindow from "../../../modalWindow/ModalWindow.tsx";
 
+import {useState} from "react";
+import Input from "../../../ui/input/Input.tsx";
+import Button from "../../../ui/button/Button.tsx";
 
-const RedactModal = () => {
+interface Props {
+    modalActive: boolean;
+    setModalActive: (modalActive: boolean) => void;
 
+}
+
+const RedactModal = ({ modalActive, setModalActive }: Props) => {
+
+    const [isPassword, setIsPassword] = useState<boolean>(false);
+
+// .activeVariant
     return (
         <>
-            <h1>redact modal</h1>
+            <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
+                <div className={styles.modalContainer}>
+                    <div className="header-part">
+                        <h2 className="title">Редактирование аккаунта</h2>
+                        <div className={styles.bar}>
+                            <p
+                                className={`${styles.variant} ${!isPassword ? styles.activeFirstVariant : null}`}
+                                onClick={() => setIsPassword(false)}
+                            >
+                                Персональные
+                            </p>
+                            <div className={styles.line}></div>
+                            <p
+                                className={`${styles.variant} ${isPassword ? styles.activeSecondVariant : null}`}
+                                onClick={() => setIsPassword(true)}
+                            >
+                                Пароль
+                            </p>
+                        </div>
+                    </div>
+                    {!isPassword ?
+                        <>
+                            <div className="form-block">
+                                <span className="label">Имя пользователя</span>
+                                <Input
+                                    text="Имя пользоватея"
+                                    type="text"
+                                    name="name"
+                                    // inputChange={(value) => handleChange(value, "password")}
+                                />
+                            </div>
+                            <div className="form-block">
+                                <span className="label">Email</span>
+                                <Input
+                                    text="Email"
+                                    type="text"
+                                    name="email"
+                                    // inputChange={(value) => handleChange(value, "password")}
+                                />
+                            </div>
+                            <div className="update-block">
+                                <Button variant="button" text="Обновить" buttonType="default"/>
+                            </div>
+                        </>:
+                        <>
+                            <div className="form-block">
+                                <span className="label">Старый пароль</span>
+                                <Input
+                                    text="Старый пароль"
+                                    type="password"
+                                    name="password"
+                                    // inputChange={(value) => handleChange(value, "password")}
+                                />
+                            </div>
+                            <div className="form-block">
+                                <span className="label">Новый пароль</span>
+                                <Input
+                                    text="Новый пароль"
+                                    type="password"
+                                    name="newPassword"
+                                    // inputChange={(value) => handleChange(value, "password")}
+                                />
+                            </div>
+                            <div className="update-block">
+                                <Button variant="button" text="Обновить" buttonType="default"/>
+                            </div>
+                        </>
+                    }
+                </div>
+            </ModalWindow>
         </>
     )
 };

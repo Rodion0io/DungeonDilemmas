@@ -11,6 +11,8 @@ import {ACCESS, REFRESH} from "../../../../utils/constants.ts";
 import {logoutRequest} from "../../../../utils/API/logoutRequest.ts";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../../utils/routes.ts";
+import RedactModal from "../redactModal/RedactModal.tsx";
+import {useModal} from "../../../modalWindow/hooks/useModal.ts";
 
 interface Props {
     props: UserModel
@@ -19,6 +21,7 @@ interface Props {
 const Profile = ({ props }: Props) => {
 
     const navigate = useNavigate();
+    const { modalActive, handleActive } = useModal();
 
     const handleClickLogout = async (): Promise<void> => {
         const token: string | null = localStorage.getItem(ACCESS);
@@ -73,6 +76,7 @@ const Profile = ({ props }: Props) => {
                                 variant="button"
                                 text="Редактировать"
                                 buttonType="default"
+                                onClick={handleActive}
                             />
                             <Button
                                 variant="button"
@@ -81,7 +85,7 @@ const Profile = ({ props }: Props) => {
                                 onClick={handleClickLogout}
                             />
                         </div>
-
+                        <RedactModal modalActive={modalActive} setModalActive={handleActive}/>
                     </div>
                 </div>
             </article>

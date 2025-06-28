@@ -39,6 +39,13 @@ export interface TokenClaims{
     userId: string;
 }
 
+export interface EditDatas{
+    newUserName: string;
+    newEmail: string;
+    oldPassword: string;
+    newPassword: string;
+}
+
 export interface UserEditModel{
     newUserName: string;
     newEmail: string;
@@ -49,8 +56,3 @@ export interface UserEditPasswordModel{
     newPassword: string;
 }
 
-export interface ModalWindowProps {
-    modalActive: boolean;
-    setModalActive: (modalActive: boolean) => void;
-    children: React.ReactNode;
-}
