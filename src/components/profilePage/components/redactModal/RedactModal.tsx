@@ -5,18 +5,22 @@ import ModalWindow from "../../../modalWindow/ModalWindow.tsx";
 import {useState} from "react";
 import Input from "../../../ui/input/Input.tsx";
 import Button from "../../../ui/button/Button.tsx";
+import type {EditDatas} from "../../../../@types/types.ts";
 
 interface Props {
     modalActive: boolean;
     setModalActive: (modalActive: boolean) => void;
+    newUserName: string;
+    newEmail: string;
 
 }
 
-const RedactModal = ({ modalActive, setModalActive }: Props) => {
+const RedactModal = (
+    { modalActive, setModalActive, newUserName, newEmail }: Props) => {
 
     const [isPassword, setIsPassword] = useState<boolean>(false);
+    const [datas, setDatas] = useState<EditDatas>({newUserName: newUserName, newEmail: newEmail, oldPassword: "", newPassword: ""});
 
-// .activeVariant
     return (
         <>
             <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
@@ -47,6 +51,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     text="Имя пользоватея"
                                     type="text"
                                     name="name"
+                                    value={datas.newUserName}
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
@@ -56,6 +61,7 @@ const RedactModal = ({ modalActive, setModalActive }: Props) => {
                                     text="Email"
                                     type="text"
                                     name="email"
+                                    value={datas.newEmail}
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>

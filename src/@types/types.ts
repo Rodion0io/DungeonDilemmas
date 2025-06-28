@@ -51,6 +51,8 @@ export interface UserEditModel{
     newEmail: string;
 }
 
+// type UserEdit = Omit<EditDatas, "newUserName" | "newEmail">
+
 export interface UserEditPasswordModel{
     oldPassword: string;
     newPassword: string;

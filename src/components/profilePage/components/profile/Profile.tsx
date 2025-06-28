@@ -85,7 +85,12 @@ const Profile = ({ props }: Props) => {
                                 onClick={handleClickLogout}
                             />
                         </div>
-                        <RedactModal modalActive={modalActive} setModalActive={handleActive}/>
+                        <RedactModal
+                            modalActive={modalActive}
+                            setModalActive={handleActive}
+                            newUserName={props.userName}
+                            newEmail={props.email}
+                        />
                     </div>
                 </div>
             </article>
