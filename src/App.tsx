@@ -8,6 +8,7 @@ import LogInPage from "./components/LogInPage/LogInPage.tsx";
 import ProfilePage from "./components/profilePage/ProfilePage.tsx";
 import RatingPage from "./components/ratingPage/RatingPage.tsx";
 import QuizPage from "./components/quizPage/QuizPage.tsx";
+import MainPage from "./components/mainPage/MainPage.tsx";
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
         {/*<ProtectedLayout>*/}
         <Routes>
             <Route path="/main" element={<Layout/>}>
-                <Route index element={<h1>MainPage</h1>}/>
+                <Route index element={<MainPage/>}/>
                 <Route path={ROUTES.RATING} element={<RatingPage/>}/>
                 <Route path={ROUTES.QUIZZES} element={<QuizPage/>}/>
                 <Route path={ROUTES.PROFILE} element={<ProfilePage/>}/>
