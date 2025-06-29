@@ -66,7 +66,7 @@ export interface UserEditPasswordModel{
 
 export type UserShortModel = Omit<UserModel, "totalPoints" | "bestUsersGame">
 
-type QuizDifficult = "Easy" | "Medium" | "Hard" | "Unknown";
+export type QuizDifficult = "Easy" | "Medium" | "Hard" | "Unknown";
 
 type QuizType = "Draft" | "Published";
 
