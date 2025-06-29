@@ -3,7 +3,8 @@ import {BEARER, URL} from "../constants.ts";
 import {request} from "./instances.ts";
 import axios from "axios";
 
-export const getUsersListRequest = async(token: string): Promise<UserOtherModelList> => {
+export const getUsersListRequest =
+    async(token: string, params: string | null): Promise<UserOtherModelList> => {
 
     const header = {
         "Content-Type": "application/json",
@@ -11,7 +12,10 @@ export const getUsersListRequest = async(token: string): Promise<UserOtherModelL
     };
 
     try{
-        const response = await request.get(`${URL}users/list`, {headers: header});
+        const response = await request.get(
+            `${URL}users/list${params ? `?name=${params}` : ""}`,
+            {headers: header}
+        );
 
         return response.data;
     }
