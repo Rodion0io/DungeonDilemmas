@@ -5,6 +5,8 @@ import styles from "./userCard.module.css"
 import goldCrown from "../../../../assets/gold-crown.svg"
 import silverCrown from "../../../../assets/silver-crown.svg"
 import bronzeCrown from "../../../../assets/bronze-crown.svg"
+import {useModal} from "../../../modalWindow/hooks/useModal.ts";
+import ConcreteUserModal from "../conreteUserModal/ConcreteUserModal.tsx";
 
 interface UserCardProps {
     // props: UserOtherModel;
@@ -15,16 +17,20 @@ interface UserCardProps {
 
 const UserCard = ({ index }: UserCardProps) => {
 
+    const { modalActive, handleActive } = useModal();
+
     return (
         <>
             <article className={styles.userCard}>
-                <div className={styles.cardContainer}>
+                <div className="card-container">
                     <div className={styles.mainInfa}>
                         <div className={styles.numberBlock}>{index}</div>
                         <div className={styles.textInfa}>
                             <h3
                                 className={`${styles.text} ${styles.name}`}
-                                id={index.toString()}>
+                                id={index.toString()}
+                                onClick={() => handleActive()}
+                            >
                                 влад долболоб
                             </h3>
                             <span
@@ -50,6 +56,10 @@ const UserCard = ({ index }: UserCardProps) => {
                         null
                     }
                 </div>
+                <ConcreteUserModal
+                    modalActive={modalActive}
+                    setModalActive={handleActive}
+                />
             </article>
         </>
     )
