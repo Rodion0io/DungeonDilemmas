@@ -6,6 +6,10 @@ import styles from "./createrQuiz.module.css"
 import Input from "../../ui/input/Input.tsx";
 import Select from "../../ui/select/Select.tsx";
 import Button from "../../ui/button/Button.tsx";
+import {ACCESS} from "../../../utils/constants.ts";
+import {createQuizRequest} from "../../../utils/API/createQuizRequest.ts";
+import {type NavigateFunction, useNavigate} from "react-router-dom";
+import {ROUTES} from "../../../utils/routes.ts";
 
 interface CreaterQuizProps {
     modalActive: boolean;
@@ -15,6 +19,7 @@ interface CreaterQuizProps {
 const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
 
     const [quiz, setQuiz] = useState<QuizCreateModel>({title: "", description: "", quizDifficulty: "Unknown"});
+    const navigate: NavigateFunction = useNavigate();
 
     const handleChange = (value: string, input: keyof QuizCreateModel) => {
         setQuiz((prev) => (
@@ -22,8 +27,19 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
         ))
     };
 
-    const handleClick = () => {
+    const handleClick = async () => {
+        const token: string | null = localStorage.getItem(ACCESS);
 
+        if (token){
+            try {
+                await createQuizRequest(token, quiz);
+
+                navigate(ROUTES.MAINPAGE);
+            }
+            catch (e) {
+              console.error(e);
+            }
+        }
     }
 
     return (
@@ -33,19 +49,17 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
                 setModalActive={setModalActive}
             >
                 <div className={styles.modalContainer}>
-                    <h2 className="title">Редактирование аккаунта</h2>
+                    <h2 className="title">Создание квиза</h2>
                     <Input
                         text="Название квиза"
                         type="text"
                         name="name"
-                        // initValue={datas.newUserName}
                         inputChange={(value) => handleChange(value, "title")}
                     />
                     <Input
                         text="Описание квиза"
                         type="text"
                         name="description"
-                        // initValue={datas.newUserName}
                         inputChange={(value) => handleChange(value, "description")}
                     />
                     <Select
@@ -57,7 +71,7 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
                         variant='button'
                         text="Применить"
                         buttonType="default"
-                        // onClick={handleClick}
+                        onClick={handleClick}
                     />
                 </div>
             </ModalWindow>

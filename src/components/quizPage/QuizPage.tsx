@@ -9,6 +9,8 @@ import {getQuizezPage} from "../../utils/API/getQuizezPage.ts";
 import {createrUrl} from "../../utils/createrUrl.ts";
 import QuizCard from "./quizCard/QuizCard.tsx";
 import Button from "../ui/button/Button.tsx";
+import {useModal} from "../modalWindow/hooks/useModal.ts";
+import CreaterQuiz from "./createrQuiz/CreaterQuiz.tsx";
 
 const QuizPage = () => {
 
@@ -23,6 +25,7 @@ const QuizPage = () => {
         });
 
     const [quizez, setQuizez] = useState<QuizModel[]>([]);
+    const { modalActive, handleActive } = useModal();
 
     const handleChange = (value: string, input: keyof FilterModel) => {
         setFilter((prev) => (
@@ -51,11 +54,6 @@ const QuizPage = () => {
     }, []);
 
 
-    useEffect(() => {
-        console.log(filter)
-    }, []);
-
-
     const handleClick = async () => {
         const token: string | null = localStorage.getItem(ACCESS);
         const partUrl = createrUrl(filter);
@@ -77,7 +75,7 @@ const QuizPage = () => {
         <>
             <section className={styles.quizPage}>
                 <div className={styles.quizConatiner}>
-                    <Button variant="button" text="Создать квиз" buttonType="default"/>
+                    <Button variant="button" text="Создать квиз" buttonType="default" onClick={handleActive}/>
                     <Filter
                         handleClick={handleClick}
                         handleChange={handleChange}
@@ -85,6 +83,7 @@ const QuizPage = () => {
                     {quizez.map((item, index) => (
                         <QuizCard props={item} key={index}/>
                     ))}
+                    <CreaterQuiz modalActive={modalActive} setModalActive={handleActive}/>
                 </div>
             </section>
         </>

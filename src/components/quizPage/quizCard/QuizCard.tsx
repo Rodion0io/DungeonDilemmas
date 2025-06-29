@@ -15,7 +15,14 @@ const QuizCard = ({ props }: QuizCardProps) => {
                     <p className={styles.description}>{props.description}</p>
                     <div className={styles.otherInfa}>
                         {props.difficulty !== "Unknown" ?
-                            <span className={styles.difficulty}>{props.difficulty}</span>:
+                            <span
+                                className={`${styles.difficulty} ${props.difficulty === "Easy" 
+                                    ? `${styles.easy}` 
+                                    : props.difficulty === "Medium" ?
+                                        `${styles.medium}` : `${styles.hard}`}`}
+                            >
+                                {props.difficulty}
+                            </span>:
                             null
                         }
                         <span

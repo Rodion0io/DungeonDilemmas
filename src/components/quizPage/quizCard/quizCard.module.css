@@ -5,6 +5,9 @@
 
 .cardСontainer{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .quizTitle{
@@ -21,13 +24,30 @@
 }
 
 .otherInfa{
-
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .difficulty{
+    font-size: 16px;
+    font-weight: 600;
+}
 
+.easy{
+    color: green;
+}
+
+.medium{
+    color: #FDB94B;
+}
+
+.hard{
+    color: red;
 }
 
 .author{
-
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
 }

@@ -40,14 +40,14 @@ const Filter = ({ handleClick, handleChange }: FilterProps) => {
                         inputChange={(value) => handleChange(value, "creatorEmail")}
                     />
                     <div className="select-block">
-                        <p className="text">Сложность</p>
+                        <p className={styles.text}>Сложность</p>
                         <Select
                             valuesArr={["", "Easy", "Medium", "Hard"]}
                             name="difficulty"
                             onChanger={(value) => handleChange(value, "difficulty")}
                         />
                     </div>
-                    <div className="action-block">
+                    <div className={styles.actionBlock}>
                         <Button
                             variant='button'
                             text="Применить"

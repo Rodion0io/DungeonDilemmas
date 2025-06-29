@@ -1,10 +1,10 @@
 import type {QuizCreateModel} from "../../@types/types.ts";
-import {BEARER, URL} from "../constants.ts";
+import {BEARER} from "../constants.ts";
 import {request} from "./instances.ts";
 import axios from "axios";
 
 export const createQuizRequest = async(
-    token: string, model: QuizCreateModel) => {
+    token: string, model: QuizCreateModel): Promise<string> => {
 
     const header = {
         "Content-Type": "application/json",
@@ -12,9 +12,9 @@ export const createQuizRequest = async(
     };
 
     try{
-        const response = await request.post(`${URL}users/quizzes/`, model, {headers: header});
+        const response = await request.post("http://62.68.131.75:8686/api/v1/quizzes/", model, {headers: header});
 
-        return response;
+        return response.data;
     }
     catch (error) {
         if (axios.isAxiosError(error)) {

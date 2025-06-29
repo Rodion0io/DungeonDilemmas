@@ -5,4 +5,18 @@
 
 .filterContainer{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actionBlock{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.text{
+    color: #fff;
+    margin-bottom: 5px;
+
 }
