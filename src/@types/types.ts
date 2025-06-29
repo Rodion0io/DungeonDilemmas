@@ -77,6 +77,10 @@ export interface QuizModel{
     difficulty: QuizDifficult;
     status: QuizType;
     userShortModel: UserShortModel;
+}
+
+export interface QuizPagedListModel{
+    quizModels: QuizModel[];
     paginationModel: PaginationModel;
 }
 

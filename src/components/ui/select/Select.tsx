@@ -1,5 +1,7 @@
 import {DIFFICULTY_TRANSLATE} from "../../../utils/translations.ts";
 
+import styles from "./select.module.css"
+
 interface SelectProps extends React.ComponentProps<'select'>{
     valuesArr: string[]
     name: string;
@@ -11,7 +13,7 @@ const Select = ({ valuesArr, className, name, ...props }: SelectProps) => {
     return (
         <>
             <select
-                className={`select ${className}`}
+                className={`${styles.select} ${className}`}
                 name={name}
                 // value={selected}
                 // id={id}
