@@ -1,6 +1,7 @@
 .quizCard{
     background-color: #58288A;
     border-radius: 10px;
+    width: 100%;
 }
 
 .cardСontainer{
@@ -15,6 +16,7 @@
     font-size: 20px;
     line-height: 22px;
     color: #FDB94B;
+    cursor: pointer;
 }
 
 .description{

@@ -45,3 +45,9 @@ a{
     justify-content: space-between;
     padding: 10px;
 }
+
+.actions-block{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

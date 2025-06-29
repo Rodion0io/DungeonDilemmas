@@ -104,3 +104,46 @@ export interface QuizCreateModel{
     description: string;
     quizDifficulty: QuizDifficult;
 }
+
+
+export interface QuizDetailModel{
+    id: string;
+    title: string;
+    description: string;
+    difficulty: QuizDifficult;
+    status: QuizType;
+    creator: UserShortModel;
+    questions: QuestionsModel[];
+}
+
+export interface QuestionsModel{
+    id: string;
+    duration: number;
+    damage: number;
+    reward: number;
+    questionType: string;
+    questionText: string;
+    questionNumber: number;
+    answers: QuestionAnswer[];
+}
+
+export interface QuestionAnswer{
+    id: string;
+    answerType: string;
+    answerType1: string;
+    text: string;
+}
+
+export interface QuestionCreateModel{
+    duration: number;
+    damage: number;
+    reward: number;
+    questionType: string;
+    questionText: string;
+}
+
+export interface AnswerCreateModel{
+    answerType: string;
+    answerType1: string;
+    text: string;
+}
