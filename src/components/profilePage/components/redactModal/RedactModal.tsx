@@ -5,7 +5,11 @@ import ModalWindow from "../../../modalWindow/ModalWindow.tsx";
 import {useEffect, useState} from "react";
 import Input from "../../../ui/input/Input.tsx";
 import Button from "../../../ui/button/Button.tsx";
-import type {EditDatas} from "../../../../@types/types.ts";
+import type {EditDatas, UserEditModel, UserEditPasswordModel} from "../../../../@types/types.ts";
+import {ACCESS, EMAIL_PATTERN} from "../../../../utils/constants.ts";
+import {editProfileRequest} from "../../../../utils/API/editProfileRequest.ts";
+import {editPasswordProfile} from "../../../../utils/API/editPasswordProfile.ts";
+import {ROUTES} from "../../../../utils/routes.ts";
 
 interface Props {
     modalActive: boolean;
@@ -20,11 +24,77 @@ const RedactModal = (
 
     const [isPassword, setIsPassword] = useState<boolean>(false);
     const [datas, setDatas] = useState<EditDatas>({newUserName: "", newEmail: "", oldPassword: "", newPassword: ""});
+    const [errorCode, setErrorCode] = useState<number>(0);
 
     useEffect(() => {
-        setDatas((prev) => ({...prev, newUserName: newUserName}));
-        setDatas((prev) => ({...prev, newEmail: newEmail}));
+        setDatas((prev) => (
+            {...prev, newUserName: newUserName, newEmail: newEmail}));
     }, [newUserName, newEmail]);
+
+
+    const handleChange = (value: string, input: keyof EditDatas): void => {
+        setDatas((prev) => (
+            {
+                ...prev,
+                [input]: value
+            }
+        ))
+    }
+
+
+    // Заглушка, чтобы ошибки не было
+    console.log(errorCode);
+
+    const changePersonalDatas = async () => {
+        if (!EMAIL_PATTERN.test(datas.newEmail)){
+            setErrorCode(1);
+        }
+        else if (datas.newUserName.length < 4 || datas.newUserName.length > 32){
+            setErrorCode(3);
+        }
+        else{
+            setErrorCode(0);
+            const token: string | null = localStorage.getItem(ACCESS);
+            if (token){
+                try {
+
+                    const model: UserEditModel = {newUserName: datas.newUserName, newEmail: datas.newEmail};
+
+                    const response = await editProfileRequest(token, model);
+                    window.location.href = ROUTES.PROFILE;
+                    return response.data
+                }
+                catch(err){
+                    console.error(err);
+                }
+            }
+        }
+    }
+
+
+    const changePassword = async () => {
+        if (datas.newPassword.length < 8 || datas.newPassword.length > 32){
+            setErrorCode(4);
+        }
+        else{
+            setErrorCode(0);
+            const token: string | null = localStorage.getItem(ACCESS);
+
+            if (token){
+                try{
+
+                    const model:  UserEditPasswordModel = {oldPassword: datas.oldPassword, newPassword: datas.newPassword};
+
+                    const response = await editPasswordProfile(token, model);
+                    window.location.href = ROUTES.PROFILE;
+                    return response.data;
+                }
+                catch (e) {
+                    console.error(e);
+                }
+            }
+        }
+    }
 
 
     return (
@@ -58,7 +128,7 @@ const RedactModal = (
                                     type="text"
                                     name="name"
                                     initValue={datas.newUserName}
-                                    // inputChange={(value) => handleChange(value, "password")}
+                                    inputChange={(value) => handleChange(value, "newUserName")}
                                 />
                             </div>
                             <div className={styles.formBlock}>
@@ -68,11 +138,16 @@ const RedactModal = (
                                     type="text"
                                     name="email"
                                     initValue={datas.newEmail}
-                                    // inputChange={(value) => handleChange(value, "password")}
+                                    inputChange={(value) => handleChange(value, "newEmail")}
                                 />
                             </div>
                             <div className={styles.updateBlock}>
-                                <Button variant="button" text="Обновить" buttonType="default"/>
+                                <Button
+                                    variant="button"
+                                    text="Обновить"
+                                    buttonType="default"
+                                    onClick={changePersonalDatas}
+                                />
                             </div>
                         </>:
                         <>
@@ -82,7 +157,7 @@ const RedactModal = (
                                     text="Старый пароль"
                                     type="password"
                                     name="password"
-                                    // inputChange={(value) => handleChange(value, "password")}
+                                    inputChange={(value) => handleChange(value, "oldPassword")}
                                 />
                             </div>
                             <div className={styles.formBlock}>
@@ -91,11 +166,16 @@ const RedactModal = (
                                     text="Новый пароль"
                                     type="password"
                                     name="newPassword"
-                                    // inputChange={(value) => handleChange(value, "password")}
+                                    inputChange={(value) => handleChange(value, "newPassword")}
                                 />
                             </div>
                             <div className={styles.updateBlock}>
-                                <Button variant="button" text="Обновить" buttonType="default"/>
+                                <Button
+                                    variant="button"
+                                    text="Обновить"
+                                    buttonType="default"
+                                    onClick={changePassword}
+                                />
                             </div>
                         </>
                     }

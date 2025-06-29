@@ -12,7 +12,7 @@ export const editProfileRequest = async(
     };
 
     try{
-        const response = await request.put(`${URL}users/profile/edit-password`, model, {headers: header});
+        const response = await request.put(`${URL}users/profile/edit`, model, {headers: header});
 
         return response;
     }

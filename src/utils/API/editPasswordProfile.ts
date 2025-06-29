@@ -3,7 +3,7 @@ import {BEARER, URL} from "../constants.ts";
 import {request} from "./instances.ts";
 import axios from "axios";
 
-export const getMyProfileRequest = async(
+export const editPasswordProfile = async(
     token: string, model: UserEditPasswordModel) => {
 
     const header = {
@@ -12,7 +12,7 @@ export const getMyProfileRequest = async(
     };
 
     try{
-        const response = await request.put(`${URL}users/profile/edit`, model, {headers: header});
+        const response = await request.put(`${URL}users/profile/edit-password`, model, {headers: header});
 
         return response;
     }
