@@ -98,3 +98,9 @@ export interface FilterModel{
     page: number;
     pageSize: number;
 }
+
+export interface QuizCreateModel{
+    title: string;
+    description: string;
+    quizDifficulty: QuizDifficult;
+}
