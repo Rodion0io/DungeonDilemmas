@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import * as React from "react";
 
 export const useInput = (
@@ -6,7 +6,11 @@ export const useInput = (
     inputChange?:(value: string) => void
 ) => {
 
-    const [currentText, setCurrentText] = useState<string>(initialState);
+    const [currentText, setCurrentText] = useState<string | number>(initialState);
+
+    useEffect(() => {
+        setCurrentText(initialState);
+    }, [initialState]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value: string = event.target.value;

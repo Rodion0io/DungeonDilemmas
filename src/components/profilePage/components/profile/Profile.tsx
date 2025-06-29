@@ -38,6 +38,7 @@ const Profile = ({ props }: Props) => {
         }
     }
 
+
     return (
         <>
             <article className={styles.profileCard}>

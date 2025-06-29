@@ -4,7 +4,7 @@ import {request} from "./instances.ts";
 import axios from "axios";
 
 export const getMyProfileRequest = async(
-    token: string, model: UserEditPasswordModel): Promise<string> => {
+    token: string, model: UserEditPasswordModel) => {
 
     const header = {
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export const getMyProfileRequest = async(
     try{
         const response = await request.put(`${URL}users/profile/edit`, model, {headers: header});
 
-        return response.data;
+        return response;
     }
     catch (error) {
         if (axios.isAxiosError(error)) {

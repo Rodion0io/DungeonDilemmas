@@ -2,7 +2,7 @@ import styles from "./redactModal.module.css"
 
 import ModalWindow from "../../../modalWindow/ModalWindow.tsx";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Input from "../../../ui/input/Input.tsx";
 import Button from "../../../ui/button/Button.tsx";
 import type {EditDatas} from "../../../../@types/types.ts";
@@ -19,7 +19,13 @@ const RedactModal = (
     { modalActive, setModalActive, newUserName, newEmail }: Props) => {
 
     const [isPassword, setIsPassword] = useState<boolean>(false);
-    const [datas, setDatas] = useState<EditDatas>({newUserName: newUserName, newEmail: newEmail, oldPassword: "", newPassword: ""});
+    const [datas, setDatas] = useState<EditDatas>({newUserName: "", newEmail: "", oldPassword: "", newPassword: ""});
+
+    useEffect(() => {
+        setDatas((prev) => ({...prev, newUserName: newUserName}));
+        setDatas((prev) => ({...prev, newEmail: newEmail}));
+    }, [newUserName, newEmail]);
+
 
     return (
         <>
@@ -51,7 +57,7 @@ const RedactModal = (
                                     text="Имя пользоватея"
                                     type="text"
                                     name="name"
-                                    value={datas.newUserName}
+                                    initValue={datas.newUserName}
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>
@@ -61,7 +67,7 @@ const RedactModal = (
                                     text="Email"
                                     type="text"
                                     name="email"
-                                    value={datas.newEmail}
+                                    initValue={datas.newEmail}
                                     // inputChange={(value) => handleChange(value, "password")}
                                 />
                             </div>

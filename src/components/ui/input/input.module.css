@@ -24,6 +24,7 @@
 .inputBLock{
     display: flex;
     margin-bottom: 5px;
+    justify-content: center;
 }
 
 .inputError{

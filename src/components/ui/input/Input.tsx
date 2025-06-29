@@ -18,6 +18,8 @@ interface InputProps extends React.ComponentProps<'input'>{
     visibilityText?: visibilityText;
     errorText?: string;
     inputChange?:(value: string) => void;
+    clas?: string;
+    initValue?: string;
 }
 
 const Input = (
@@ -29,11 +31,13 @@ const Input = (
         errorText = undefined,
         inputChange,
         name,
+        clas = undefined,
+        initValue,
         ...props
     } : InputProps) => {
 
     const [visibility, setVisibility] = useState<boolean>(false);
-    const {currentText, handleChange} = useInput("", inputChange);
+    const {currentText, handleChange} = useInput(initValue ? initValue : "", inputChange);
 
     return(
         <>
@@ -41,7 +45,7 @@ const Input = (
                 <div className={styles.inputBLock}>
                     <input
                         className={`${styles.input} 
-                        ${errorText ? styles.inputError : null}`}
+                        ${errorText ? styles.inputError : null} ${clas ? clas : ""}`}
                         type={!visibility ? type : "text"}
                         disabled={disabled}
                         placeholder={text}

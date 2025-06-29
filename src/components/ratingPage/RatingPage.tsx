@@ -37,13 +37,17 @@ const RatingPage = () => {
         <>
             <section className="rating">
                 <div className="section-container">
-                    <Input
-                        text="Имя"
-                        type="text"
-                        name="name"
-                        inputChange={(value) => handleChange(value)}
-                    />
+                    <div className="filter-container">
+
+                    </div>
                     <div className={styles.cardContainer}>
+                        <Input
+                            text="Имя"
+                            type="text"
+                            name="name"
+                            clas={styles.filter}
+                            inputChange={(value) => handleChange(value)}
+                        />
                         {usersList.users.map((user: UserOtherModel, index: number) => (
                             <UserCard
                                 props={user}
