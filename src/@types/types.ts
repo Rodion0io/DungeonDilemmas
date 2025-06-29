@@ -85,3 +85,12 @@ export interface PaginationModel{
     pageSize: number;
     pagesCount: number;
 }
+
+export interface FilterModel{
+    title?: string;
+    description?: string;
+    difficulty?: QuizDifficult;
+    creatorEmail?: string;
+    page: number;
+    pageSize: number;
+}

@@ -1,6 +1,7 @@
-import QuizCard from "./quizCard/QuizCard.tsx";
+// import QuizCard from "./quizCard/QuizCard.tsx";
 
 import styles from "./quizPage.module.css"
+import Filter from "./filter/Filter.tsx";
 
 const QuizPage = () => {
 
@@ -8,7 +9,8 @@ const QuizPage = () => {
         <>
             <section className={styles.quizPage}>
                 <div className={styles.quizConatiner}>
-                    <QuizCard/>
+                    <Filter/>
+                    {/*<QuizCard/>*/}
                 </div>
             </section>
         </>
