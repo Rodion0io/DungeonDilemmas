@@ -8,6 +8,7 @@ import {ACCESS} from "../../utils/constants.ts";
 import {getQuizezPage} from "../../utils/API/getQuizezPage.ts";
 import {createrUrl} from "../../utils/createrUrl.ts";
 import QuizCard from "./quizCard/QuizCard.tsx";
+import Button from "../ui/button/Button.tsx";
 
 const QuizPage = () => {
 
@@ -50,6 +51,11 @@ const QuizPage = () => {
     }, []);
 
 
+    useEffect(() => {
+        console.log(filter)
+    }, []);
+
+
     const handleClick = async () => {
         const token: string | null = localStorage.getItem(ACCESS);
         const partUrl = createrUrl(filter);
@@ -71,6 +77,7 @@ const QuizPage = () => {
         <>
             <section className={styles.quizPage}>
                 <div className={styles.quizConatiner}>
+                    <Button variant="button" text="Создать квиз" buttonType="default"/>
                     <Filter
                         handleClick={handleClick}
                         handleChange={handleChange}
