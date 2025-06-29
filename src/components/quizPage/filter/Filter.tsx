@@ -1,43 +1,15 @@
 import styles from "./filter.module.css"
-import {useState} from "react";
 import type {FilterModel} from "../../../@types/types.ts";
-// import {ERROR_MESSAGES} from "../../../utils/errorMessages.ts";
 import Input from "../../ui/input/Input.tsx";
 import Select from "../../ui/select/Select.tsx";
 import Button from "../../ui/button/Button.tsx";
-import {ACCESS} from "../../../utils/constants.ts";
-import {createrUrl} from "../../../utils/createrUrl.ts";
-import {getQuizezPage} from "../../../utils/API/getQuizezPage.ts";
 
-const Filter = () => {
+interface FilterProps {
+    handleClick:() => void;
+    handleChange: (value: string, input: keyof FilterModel) => void;
+}
 
-    const [filter, setFilter] = useState<FilterModel>(
-        {
-            title: undefined,
-            description: undefined,
-            difficulty: undefined,
-            creatorEmail: undefined,
-            page: 1,
-            pageSize: 5
-        });
-
-    const handleChange = (value: string, input: keyof FilterModel) => {
-        setFilter((prev) => (
-            {...prev, [input]: value}
-        ))
-    }
-
-    const handleClick = async () => {
-        const token: string | null = localStorage.getItem(ACCESS);
-        const urlPart: string = createrUrl(filter);
-
-        if (token){
-            try {
-                const respose = await getQuizezPage(token, urlPart);
-
-            }
-        }
-    }
+const Filter = ({ handleClick, handleChange }: FilterProps) => {
 
 
     return (
@@ -69,10 +41,19 @@ const Filter = () => {
                     />
                     <div className="select-block">
                         <p className="text">Сложность</p>
-                        <Select valuesArr={["", "Easy", "Medium", "Hard"]} name="difficulty"/>
+                        <Select
+                            valuesArr={["", "Easy", "Medium", "Hard"]}
+                            name="difficulty"
+                            onChanger={(value) => handleChange(value, "difficulty")}
+                        />
                     </div>
                     <div className="action-block">
-                        <Button variant='button' text="Применить" buttonType="default"/>
+                        <Button
+                            variant='button'
+                            text="Применить"
+                            buttonType="default"
+                            onClick={handleClick}
+                        />
                     </div>
                 </div>
             </section>
