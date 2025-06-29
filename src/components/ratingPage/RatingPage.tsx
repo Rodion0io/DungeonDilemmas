@@ -1,14 +1,14 @@
 import styles from "./ratingPage.module.css"
 
 import UserCard from "./components/userCard/UserCard.tsx";
-import type {UserOtherModel} from "../../@types/types.ts";
+import type {UserOtherModel, UserOtherModelList} from "../../@types/types.ts";
 import {useEffect, useState} from "react";
 import {getUsersListRequest} from "../../utils/API/getUsersListRequest.ts";
 import {ACCESS} from "../../utils/constants.ts";
 
 const RatingPage = () => {
 
-    const [usersList, setUsersList] = useState<UserOtherModel[]>([]);
+    const [usersList, setUsersList] = useState<UserOtherModelList>({users: []});
 
     useEffect(() => {
         const getUsers = async() => {
@@ -17,7 +17,7 @@ const RatingPage = () => {
                 try {
                     const response = await getUsersListRequest(token);
 
-                    setUsersList(response);
+                    setUsersList((prev: UserOtherModelList) => ({...prev, ...response}));
                 }
                 catch (error){
                     console.error(error);
@@ -25,17 +25,24 @@ const RatingPage = () => {
             }
         }
         getUsers();
-    },[])
+    },[]);
 
     return (
         <>
             <section className="rating">
                 <div className="section-container">
                     <div className={styles.cardContainer}>
-                        <UserCard index={1}/>
-                        <UserCard index={2}/>
-                        <UserCard index={3}/>
-                        <UserCard index={4}/>
+                        {usersList.users.map((user: UserOtherModel, index: number) => (
+                            <UserCard
+                                props={user}
+                                index={index}
+                                key={index}
+                            />
+                        ))}
+                        {/*<UserCard index={1}/>*/}
+                        {/*<UserCard index={2}/>*/}
+                        {/*<UserCard index={3}/>*/}
+                        {/*<UserCard index={4}/>*/}
                     </div>
                 </div>
             </section>

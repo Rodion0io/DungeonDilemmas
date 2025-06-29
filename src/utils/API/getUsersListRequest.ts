@@ -1,9 +1,9 @@
-import type {UserOtherModel} from "../../@types/types.ts";
+import type {UserOtherModelList} from "../../@types/types.ts";
 import {BEARER, URL} from "../constants.ts";
 import {request} from "./instances.ts";
 import axios from "axios";
 
-export const getUsersListRequest = async(token: string): Promise<UserOtherModel[]> => {
+export const getUsersListRequest = async(token: string): Promise<UserOtherModelList> => {
 
     const header = {
         "Content-Type": "application/json",

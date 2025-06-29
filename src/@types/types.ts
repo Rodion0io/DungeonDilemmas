@@ -26,6 +26,10 @@ export interface UserModel{
 
 export type UserOtherModel = Omit<UserModel, "email">;
 
+export interface UserOtherModelList{
+    users: UserOtherModel[]
+}
+
 export interface TokenResponseModel{
     accessToken: string;
     refreshToken: string;

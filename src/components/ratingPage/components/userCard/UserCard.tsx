@@ -1,6 +1,6 @@
 import styles from "./userCard.module.css"
 
-// import type {UserOtherModel} from "../../../../@types/types.ts";
+import type {UserOtherModel} from "../../../../@types/types.ts";
 
 import goldCrown from "../../../../assets/gold-crown.svg"
 import silverCrown from "../../../../assets/silver-crown.svg"
@@ -9,13 +9,11 @@ import {useModal} from "../../../modalWindow/hooks/useModal.ts";
 import ConcreteUserModal from "../conreteUserModal/ConcreteUserModal.tsx";
 
 interface UserCardProps {
-    // props: UserOtherModel;
+    props: UserOtherModel;
     index: number;
 }
 
-// { props }: UserCardProps
-
-const UserCard = ({ index }: UserCardProps) => {
+const UserCard = ({ props, index }: UserCardProps) => {
 
     const { modalActive, handleActive } = useModal();
 
@@ -24,31 +22,34 @@ const UserCard = ({ index }: UserCardProps) => {
             <article className={styles.userCard}>
                 <div className="card-container">
                     <div className={styles.mainInfa}>
-                        <div className={styles.numberBlock}>{index}</div>
+                        <div className={styles.numberBlock}>{index + 1}</div>
                         <div className={styles.textInfa}>
                             <h3
                                 className={`${styles.text} ${styles.name}`}
-                                id={index.toString()}
+                                id={props.id}
                                 onClick={() => handleActive()}
                             >
-                                влад долболоб
+                                {props.userName}
                             </h3>
                             <span
                                 className={`${styles.text} ${styles.game}`}
                             >
-                            777 баллов
+                            {`Баллы: ${props.totalPoints}`}
                         </span>
                             <span
                                 className={`${styles.text} ${styles.game}`}
                             >
-                            такая-то игра, 777 баллов
+                            {
+                                `Лучшая игра: ${props.bestUsersGame === null ? "-"
+                                    : `${props.bestUsersGame.name}: ${props.bestUsersGame.score} баллов`}`
+                            }
                         </span>
                         </div>
                     </div>
-                    {index <= 3 ?
+                    {index + 1 <= 3 ?
                         <div className="greate-block">
                             <img
-                                src={index === 1 ? `${goldCrown}` : index === 2 ? `${silverCrown}` : `${bronzeCrown}`}
+                                src={index + 1 === 1 ? `${goldCrown}` : index + 1 === 2 ? `${silverCrown}` : `${bronzeCrown}`}
                                 alt=""
                             />
                         </div>
