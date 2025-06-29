@@ -1,0 +1,12 @@
+.quizPage{
+    /*width: 50%;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quizConatiner{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}

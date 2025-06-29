@@ -1,9 +1,15 @@
+import QuizCard from "./quizCard/QuizCard.tsx";
+
+import styles from "./quizPage.module.css"
+
 const QuizPage = () => {
 
     return (
         <>
-            <section className="quiz-page">
-                
+            <section className={styles.quizPage}>
+                <div className={styles.quizConatiner}>
+                    <QuizCard/>
+                </div>
             </section>
         </>
     )

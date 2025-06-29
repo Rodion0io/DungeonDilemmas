@@ -1,0 +1,33 @@
+.quizCard{
+    background-color: #58288A;
+    border-radius: 10px;
+}
+
+.cardСontainer{
+    padding: 20px;
+}
+
+.quizTitle{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    color: #FDB94B;
+}
+
+.description{
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.otherInfa{
+
+}
+
+.difficulty{
+
+}
+
+.author{
+
+}

@@ -64,3 +64,24 @@ export interface UserEditPasswordModel{
     newPassword: string;
 }
 
+export type UserShortModel = Omit<UserModel, "totalPoints" | "bestUsersGame">
+
+type QuizDifficult = "Easy" | "Medium" | "Hard" | "Unknown";
+
+type QuizType = "Draft" | "Published";
+
+export interface QuizModel{
+    id: string;
+    title: string;
+    description: string;
+    difficulty: QuizDifficult;
+    status: QuizType;
+    userShortModel: UserShortModel;
+    paginationModel: PaginationModel;
+}
+
+export interface PaginationModel{
+    page: number;
+    pageSize: number;
+    pagesCount: number;
+}
