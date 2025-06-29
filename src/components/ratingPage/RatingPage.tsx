@@ -39,10 +39,6 @@ const RatingPage = () => {
                                 key={index}
                             />
                         ))}
-                        {/*<UserCard index={1}/>*/}
-                        {/*<UserCard index={2}/>*/}
-                        {/*<UserCard index={3}/>*/}
-                        {/*<UserCard index={4}/>*/}
                     </div>
                 </div>
             </section>
