@@ -1,0 +1,17 @@
+.answer-card__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 99%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    height: 40px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.name{
+    font-size: 20px;
+    color: #FDB94B;
+    font-weight: 600;
+}
