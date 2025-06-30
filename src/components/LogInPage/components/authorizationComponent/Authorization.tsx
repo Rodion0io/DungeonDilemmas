@@ -28,7 +28,7 @@ const Authorization: FC = () => {
                         text="Email"
                         type="email"
                         name="email"
-                        errorText={errorCode > 0 ? ERROR_MESSAGES[errorCode] : undefined}
+                        // errorText={errorCode > 0 ? ERROR_MESSAGES[errorCode] : undefined}
                         inputChange={(value) => handleChange(value, "email")}
                     />
                     <Input
@@ -37,6 +37,10 @@ const Authorization: FC = () => {
                         name="password"
                         inputChange={(value) => handleChange(value, "password")}
                     />
+                    {errorCode !== 0 ?
+                        <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                        null
+                    }
                     <div className={styles.buttonContainer}>
                         <Button
                             className={styles.actionButton}

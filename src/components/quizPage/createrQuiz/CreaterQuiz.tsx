@@ -10,6 +10,7 @@ import {ACCESS} from "../../../utils/constants.ts";
 import {createQuizRequest} from "../../../utils/API/createQuizRequest.ts";
 import {type NavigateFunction, useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../utils/routes.ts";
+import {ERROR_MESSAGES} from "../../../utils/errorMessages.ts";
 
 interface CreaterQuizProps {
     modalActive: boolean;
@@ -20,6 +21,7 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
 
     const [quiz, setQuiz] = useState<QuizCreateModel>({title: "", description: "", quizDifficulty: "Unknown"});
     const navigate: NavigateFunction = useNavigate();
+    const [errorCode, setErrorCode] = useState(0);
 
     const handleChange = (value: string, input: keyof QuizCreateModel) => {
         setQuiz((prev) => (
@@ -30,8 +32,14 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
     const handleClick = async () => {
         const token: string | null = localStorage.getItem(ACCESS);
 
+        if (quiz.title.length < 1 || quiz.title.length > 64){
+            setErrorCode(12)
+        }
+
         if (token){
+
             try {
+                setErrorCode(0);
                 await createQuizRequest(token, quiz);
 
                 navigate(ROUTES.MAINPAGE);
@@ -67,6 +75,10 @@ const CreaterQuiz = ({ modalActive, setModalActive }: CreaterQuizProps) => {
                         name="difficulty"
                         onChanger={(value) => handleChange(value, "quizDifficulty")}
                     />
+                    {errorCode !== 0 ?
+                        <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                        null
+                    }
                     <Button
                         variant='button'
                         text="Применить"

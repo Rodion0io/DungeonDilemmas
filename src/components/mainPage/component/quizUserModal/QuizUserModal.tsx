@@ -16,6 +16,8 @@ import type { AnswerCreateModel, QuestionCreateModel, QuizDetailModel, AnswerMod
 
 import styles from "../../../quizPage/createrQuiz/createrQuiz.module.css";
 import AnswerCard from "./answerCard/AnswerCard.tsx";
+import {ERROR_MESSAGES} from "../../../../utils/errorMessages.ts";
+import {publishQuiz} from "../../../../utils/API/publishQuiz.ts";
 
 interface QuizCardProps {
     modalActive: boolean;
@@ -27,6 +29,7 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
     const [isCreatedQuestion, setIsCreatedQuestion] = useState(false);
     const [isCreatedAnswer, setIsCreatedAnswer] = useState(false);
     const [isOpend, setIsOpend] = useState(false);
+    const [errorCode, setErrorCode] = useState(0);
 
     const [questions, setQuestions] = useState<QuestionCreateModel>({
         duration: 0,
@@ -66,8 +69,21 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
 
     const addQuestion = async () => {
         const token = localStorage.getItem(ACCESS);
+        if (questions.duration < 20 || questions.duration > 60) {
+            setErrorCode(13);
+        }
+        else if (questions.damage < 1 || questions.damage > 30) {
+            setErrorCode(14);
+        }
+        else if (questions.reward < 1 || questions.reward > 100) {
+            setErrorCode(15);
+        }
+        else if (questions.questionText.length < 4 || questions.questionText.length > 256){
+            setErrorCode(16);
+        }
         if (token) {
             try {
+                setErrorCode(0);
                 await createQuestion(token, questions, details.id);
                 window.location.href = ROUTES.MAINPAGE;
             } catch (e) {
@@ -87,18 +103,50 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
         const token = localStorage.getItem(ACCESS);
         const question = details.questions.find((q) => q.id === selectedQuestion);
         if (question && question.answers.length !== 4) {
+            if (newAnswer.text.length < 1){
+                setErrorCode(10)
+            }
             if (token) {
                 try {
+                    setErrorCode(0);
                     await createAnswer(token, newAnswer, selectedQuestion);
                     window.location.href = ROUTES.MAINPAGE;
                 } catch (e) {
+                    setErrorCode(9);
                     console.error(e);
                 }
             }
-        } else {
+        }
+        else {
             console.log("Максимум 4 ответа");
+            setErrorCode(8);
         }
     };
+
+    const publish = async() => {
+        const token = localStorage.getItem(ACCESS);
+        if (token) {
+            const checkAll = details.questions.find((q) => q.answers.length < 4);
+            if (checkAll) {{
+                console.log("bimbim")
+                setErrorCode(8);
+            }}
+            else{
+                try {
+                    setErrorCode(0);
+                    await publishQuiz(token, details.id);
+                    window.location.href = ROUTES.MAINPAGE;
+                }
+                catch (e) {
+                    setErrorCode(11);
+                    console.error(e);
+
+                }
+            }
+
+        }
+    }
+
 
     return (
         <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
@@ -110,6 +158,10 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
                         <Input text="Повреждение" type="text" name="damage" inputChange={(val) => handleChangeQuestion(val, "damage")} />
                         <Input text="Награда" type="text" name="reward" inputChange={(val) => handleChangeQuestion(val, "reward")} />
                         <Input text="Описание вопроса" type="text" name="questionText" inputChange={(val) => handleChangeQuestion(val, "questionText")} />
+                        {errorCode !== 0 ?
+                            <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                            null
+                        }
                         <Button text="Добавить" variant="button" buttonType="default" onClick={addQuestion} />
                         <Button text="Назад" variant="button" buttonType="default" onClick={() => setIsCreatedQuestion(false)} />
                     </>
@@ -179,8 +231,13 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
                             />
                         ))}
 
+                        {errorCode !== 0 ?
+                            <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                            null
+                        }
+
                         <div className="actions-block">
-                            <Button text="Опубликовать" variant="button" buttonType="default" />
+                            <Button text="Опубликовать" variant="button" buttonType="default" onClick={publish}/>
                             <Button text="Удалить" variant="button" buttonType="default" onClick={handleDelete} />
                             <Button text="Добавить вопрос" variant="button" buttonType="default" onClick={() => setIsCreatedQuestion(true)} />
                             <Button text="Добавить ответ" variant="button" buttonType="default" onClick={() => setIsCreatedAnswer(true)} />

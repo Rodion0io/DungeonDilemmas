@@ -10,6 +10,7 @@ import {ACCESS, EMAIL_PATTERN} from "../../../../utils/constants.ts";
 import {editProfileRequest} from "../../../../utils/API/editProfileRequest.ts";
 import {editPasswordProfile} from "../../../../utils/API/editPasswordProfile.ts";
 import {ROUTES} from "../../../../utils/routes.ts";
+import {ERROR_MESSAGES} from "../../../../utils/errorMessages.ts";
 
 interface Props {
     modalActive: boolean;
@@ -65,6 +66,7 @@ const RedactModal = (
                     return response.data
                 }
                 catch(err){
+                    setErrorCode(6)
                     console.error(err);
                 }
             }
@@ -74,6 +76,7 @@ const RedactModal = (
 
     const changePassword = async () => {
         if (datas.newPassword.length < 8 || datas.newPassword.length > 32){
+            console.log('shdgbkdsjf')
             setErrorCode(4);
         }
         else{
@@ -90,6 +93,7 @@ const RedactModal = (
                     return response.data;
                 }
                 catch (e) {
+                    setErrorCode(6)
                     console.error(e);
                 }
             }
@@ -141,6 +145,10 @@ const RedactModal = (
                                     inputChange={(value) => handleChange(value, "newEmail")}
                                 />
                             </div>
+                            {errorCode !== 0 ?
+                                <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                                null
+                            }
                             <div className={styles.updateBlock}>
                                 <Button
                                     variant="button"
@@ -168,6 +176,10 @@ const RedactModal = (
                                     name="newPassword"
                                     inputChange={(value) => handleChange(value, "newPassword")}
                                 />
+                                {errorCode !== 0 ?
+                                    <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                                    null
+                                }
                             </div>
                             <div className={styles.updateBlock}>
                                 <Button

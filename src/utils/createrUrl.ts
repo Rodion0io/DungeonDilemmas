@@ -15,7 +15,7 @@ export const createrUrl = (model: FilterModel) => {
     if (model.creatorEmail){
         url += `creatorEmail=${model.creatorEmail}&`;
     }
-    url += `page=${model.page}&pageSize=5`;
+    url += `page=${model.page}&pageSize=100`;
 
     return url;
 }

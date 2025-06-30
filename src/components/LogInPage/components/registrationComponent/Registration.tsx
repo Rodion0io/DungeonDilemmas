@@ -27,7 +27,7 @@ const Registration: FC = () => {
                         text="Email"
                         type="email"
                         name="email"
-                        errorText={errorCode > 0 ? ERROR_MESSAGES[errorCode] : undefined}
+                        // errorText={errorCode > 0 ? ERROR_MESSAGES[errorCode] : undefined}
                         inputChange={(value) => handleChange(value, "email")}
                     />
                     <Input
@@ -48,6 +48,10 @@ const Registration: FC = () => {
                         name="repeatPassword"
                         inputChange={(value) => handleChange(value, "passwordRepeat")}
                     />
+                    {errorCode !== 0 ?
+                        <p className="error-message">{ERROR_MESSAGES[errorCode]}</p>:
+                        null
+                    }
                     <div className={styles.buttonContainer}>
                         <Button
                             className={styles.actionButton}
