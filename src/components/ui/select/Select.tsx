@@ -40,7 +40,7 @@ const Select = ({ valuesArr, className, name, onChanger, questions, ...props }: 
                     <option key={index} value={item}>{DIFFICULTY_TRANSLATE[item]}</option>
                 )): questions ?
                     questions.map((item) => (
-                        <option id={item.id} key={item.id} value={item.questionText}>{item.questionText}</option>
+                        <option id={item.id} key={item.id} value={item.id}>{item.questionText}</option>
                     )):null
                 }
             </select>

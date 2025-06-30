@@ -1,0 +1,33 @@
+.title-question{
+    color: #FDB94B;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.infa-block{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.time{
+    color: #fff;
+}
+
+.delete{
+    color: #fff;
+    cursor: pointer;
+}
+
+.delete:hover{
+    color: #777777;
+    transition: all 0.2s;
+}

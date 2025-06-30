@@ -64,7 +64,8 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
 
 
     const [isCreatedAnswer, setIsCreatedAnswer] = useState(false);
-    const [newAnswer, setNewAnswer] = useState<AnswerCreateModel>({answerType: "", answerType1: "", text: ""});
+    const [newAnswer, setNewAnswer] = useState<AnswerCreateModel>({answerType: "text", answerType1: "text", text: ""});
+    const [selectedQuestion, setSelectedQuestion] = useState<string>("");
 
     const handleChangeAnswer = (value: string, input: keyof AnswerCreateModel) => {
         setNewAnswer((prev) => ({
@@ -76,18 +77,24 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
     const addAnswer = async() => {
         const token = localStorage.getItem(ACCESS);
 
-        if (token){
-            try {
-                await createAnswer(token, newAnswer, details.id);
-                window.location.href = ROUTES.MAINPAGE;
-            }
-            catch (e) {
-                console.error(e);
+        const question = details.questions.find((q) => q.id === selectedQuestion);
+
+        if (question && question.answers.length !== 4) {
+            if (token){
+                try {
+                    await createAnswer(token, newAnswer, selectedQuestion);
+                    window.location.href = ROUTES.MAINPAGE;
+                }
+                catch (e) {
+                    console.error(e);
+                }
             }
         }
+        else{
+            console.log("error");
+        }
+
     }
-
-
 
     return (
         <>
@@ -135,9 +142,9 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
                         : isCreatedAnswer ?
                             <>
                                 <Select
-                                    questions={details.questions}
+                                    questions={["", ...details.questions]}
                                     name="difficulty"
-                                    // onChanger={(value) => handleChange(value, "quizDifficulty")}
+                                    onChanger={(value) => setSelectedQuestion(value)}
                                 />
 
                                 <Input
