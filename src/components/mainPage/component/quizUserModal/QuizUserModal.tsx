@@ -182,7 +182,7 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
                         {selectedAnswers.length > 0 ? (
                             <ul className='acnswers-block'>
                                 {selectedAnswers.map((ans, index) => (
-                                    <AnswerCard props={ans} key={index} />
+                                    <AnswerCard props={ans} key={index}  />
                                 ))}
                             </ul>
                         ) : (

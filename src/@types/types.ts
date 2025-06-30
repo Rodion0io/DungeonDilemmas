@@ -132,6 +132,7 @@ export interface QuestionAnswer{
     answerType: string;
     answerType1: string;
     text: string;
+    questionId: string;
 }
 
 export interface QuestionCreateModel{

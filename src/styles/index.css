@@ -66,3 +66,7 @@ a{
 .error-message{
     color: red;
 }
+
+.answer-card__container-check {
+    width: 20px;
+}
