@@ -54,18 +54,12 @@ const Input = (
                         onChange={handleChange}
                         {...props}
                     />
-                    {type !== "password" ?
-                        <button
-                            className={`${styles.inputButton} ${styles.inputCrossButton}`}
-                            type="button">
-                            ✕
-                        </button>
-                        :
+                    {type === "password" ?
                         <img
                             onClick={() => setVisibility((prevState) => prevState ? false : true)}
                             src={!visibility ? visibilityIcon : invisibilityIcon}
                             alt=""
-                            className={`${styles.inputButton} ${styles.visibilityPassword}`}/>
+                            className={`${styles.inputButton} ${styles.visibilityPassword}`}/>: null
                     }
                 </div>
                 <p className={styles.errorMessage}>{errorText}</p>

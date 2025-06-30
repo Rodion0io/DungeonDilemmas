@@ -104,7 +104,6 @@ const QuizUserModal = ({ modalActive, setModalActive, details }: QuizCardProps) 
         <ModalWindow modalActive={modalActive} setModalActive={setModalActive}>
             <div className={styles.modalContainer}>
 
-                {/* Добавление вопроса */}
                 {isCreatedQuestion ? (
                     <>
                         <Input text="Время" type="text" name="time" inputChange={(val) => handleChangeQuestion(val, "duration")} />

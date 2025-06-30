@@ -31,7 +31,7 @@ const Header : FC = () => {
                                     end>
                                     {({ isActive }) =>
                                         <>
-                                            <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
+                                            <img className="navlick-icon" src={`${isActive ? `${selectedHome}` : `${home}`}`} alt=""/>
                                             Главная
                                         </>
                                     }
@@ -44,7 +44,7 @@ const Header : FC = () => {
                                     end>
                                     {({ isActive }) =>
                                         <>
-                                            <img className="navlick-icon" src={`${isActive ? raitingSelected : raiting}`} alt=""/>
+                                            <img className="navlick-icon" src={`${isActive ? `${raitingSelected}` : `${raiting}`}`} alt=""/>
                                             Рейтинг
                                         </>
                                     }
@@ -59,7 +59,7 @@ const Header : FC = () => {
                                     end>
                                     {({ isActive }) =>
                                         <>
-                                            <img className="navlick-icon" src={`${isActive ? selectedHome : home}`} alt=""/>
+                                            <img className="navlick-icon" src={`${isActive ? `${selectedHome}` : `${home}`}`} alt=""/>
                                             Квизы
                                         </>
                                     }
@@ -72,7 +72,7 @@ const Header : FC = () => {
                                     end>
                                     {({ isActive }) =>
                                         <>
-                                            <img className="navlick-icon" src={`${isActive ? profileSelected : profile}`} alt=""/>
+                                            <img className="navlick-icon" src={`${isActive ? `${profileSelected}` : `${profile}`}`} alt=""/>
                                             Профиль
                                         </>
                                     }

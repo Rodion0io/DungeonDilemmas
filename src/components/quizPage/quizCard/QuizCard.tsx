@@ -19,27 +19,6 @@ const QuizCard = ({ props, titleClass }: QuizCardProps) => {
             creator: {id: "", email: "", userName: ""}, questions: []}
     );
 
-    //
-    // useEffect(() => {
-    //     const request = async() => {
-    //         const token: string | null = localStorage.getItem(ACCESS);
-    //
-    //
-    //         if (token){
-    //             try {
-    //                 const response: QuizDetailModel = await getDetailQuizRequest(token, props.id);
-    //
-    //                 setDetailQuiz(response);
-    //
-    //             }
-    //             catch (e) {
-    //                 console.error(e);
-    //             }
-    //         }
-    //     }
-    //     request();
-    // }, []);
-
     const handleClick = async () => {
         const token: string | null = localStorage.getItem(ACCESS);
 
